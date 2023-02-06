@@ -15,13 +15,11 @@ Missatge amb <em>cursiva</em>.
 2. Numero 2
 3. Numero 3
 
-1. Numero 1
-  2. Numero 2
-  3. Numero 3
+- Primer
+- Segon
 
-1. Numero 1
-1. Numero 2
-1. Numero 3
+* Primer
+* Segon
 
 ### Info en aquesta página
 https://www.markdownguide.org/basic-syntax
