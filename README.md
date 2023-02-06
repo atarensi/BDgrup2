@@ -10,5 +10,5 @@ Missatge amb __negreta__.
 
 Missatge amb <em>cursiva</em>.
 
-#### Info en aquesta página
+### Info en aquesta página
 https://www.markdownguide.org/basic-syntax
