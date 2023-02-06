@@ -1,0 +1,34 @@
+ try {
+
+            Class.forName("com.mysql.cj.jdbc.Driver");
+
+            //Conectem a la base de dades
+            Connection con=DriverManager.getConnection("jdbc:mysql://10.2.169.12:3306/prova","perepi","pastanaga");
+
+            Calendar calendar = Calendar.getInstance();
+            java.sql.Date startDate = new java.sql.Date(calendar.getTime().getTime());
+            String query = " INSERT INTO empleats (empleat_id,nom,cognoms,email,telefon,data_contractacio,feina_codi,salari)"
+                    + " values (?, ?, ?, ?, ?, ?, ?, ?)";
+
+            // create the mysql insert preparedstatement
+            PreparedStatement preparedStmt = con.prepareStatement(query);
+            preparedStmt.setInt    (1, 301);
+            preparedStmt.setString (2, "Pre");
+            preparedStmt.setString (3, "P");
+            preparedStmt.setString (4, "prepi@sapalomera.cat");
+            preparedStmt.setString (5, "92350909");
+            preparedStmt.setDate   (6, startDate);
+            preparedStmt.setInt (7, 7);
+            preparedStmt.setFloat  (8, 500.12f);
+
+
+            // execute the preparedstatement
+            preparedStmt.execute();
+
+            //Tanquem la connexió
+            con.close();
+        }catch(Exception e){
+            System.out.println(e);
+        }
+    }
+}
