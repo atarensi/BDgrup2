@@ -10,5 +10,18 @@ Missatge amb __negreta__.
 
 Missatge amb <em>cursiva</em>.
 
+#### Aprenent l'ordre amb numeros
+1. Numero 1
+2. Numero 2
+3. Numero 3
+
+1. Numero 1
+  2. Numero 2
+  3. Numero 3
+
+1. Numero 1
+1. Numero 2
+1. Numero 3
+
 ### Info en aquesta página
 https://www.markdownguide.org/basic-syntax
