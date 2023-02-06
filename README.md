@@ -18,5 +18,7 @@ Missatge amb <em>cursiva</em>.
 - Primer
 - Segon
 
+Text amb ``accents``
+
 ### Info en aquesta página
 https://www.markdownguide.org/basic-syntax
