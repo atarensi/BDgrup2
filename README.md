@@ -18,8 +18,5 @@ Missatge amb <em>cursiva</em>.
 - Primer
 - Segon
 
-* Primer
-* Segon
-
 ### Info en aquesta página
 https://www.markdownguide.org/basic-syntax
