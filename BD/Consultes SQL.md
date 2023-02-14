@@ -2,9 +2,9 @@ BEGIN;
 
 ### Categoria 1: 
 
-``Mostra els candidats que tenen mes de xxx anys``
+``Mostra els candidats que tenen mes de xxx anys``<br>
 
-SELECT TIMESTAMPDIFF(YEAR,data_naixement,CURDATE()) AS Edat<br>
+***SELECT TIMESTAMPDIFF(YEAR,data_naixement,CURDATE()) AS Edat<br>
 	FROM persones<br>
 WHERE TIMESTAMPDIFF(YEAR,data_naixement,CURDATE()) >= 25;
 
@@ -52,7 +52,7 @@ GROUP BY p.sexe;
 
 ### Categoria 3:
 ``Mostra les persones que han sigut candidates mes de 2 vegades``
-*SELECT persona_id AS Id_persona, CONCAT(nom,' ',cog1 ,' ',cog2) AS Nom_complet<br>
+SELECT persona_id AS Id_persona, CONCAT(nom,' ',cog1 ,' ',cog2) AS Nom_complet<br>
 	FROM persones<br>
 WHERE persona_id IN (SELECT candidat_id<br>
 						FROM candidats<br>
