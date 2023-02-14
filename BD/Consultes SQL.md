@@ -38,10 +38,14 @@ SELECT c.provincia_id, COUNT(*) AS num_candidats <br>
 
 ``Mostra als candidats que han estat mes de xx vegades com a S = suplent``
 
-
-
-
-
+**Cantidad de mujeres que se han presentado en 2022**
+SELECT COUNT(p.sexe) AS "vots dones"
+	FROM persones p
+    INNER JOIN candidats c ON c.persona_id = p.persona_id
+    INNER JOIN candidatures ca ON ca.candidatura_id = c.candidatura_id
+    INNER JOIN eleccions e ON e.eleccio_id = ca.eleccio_id
+WHERE p.sexe = 'F' AND e.any = 2022
+GROUP BY p.sexe;
 
 
 
