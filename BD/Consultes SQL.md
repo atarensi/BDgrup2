@@ -2,9 +2,9 @@ BEGIN;
 
 ### Categoria 1: 
 
-``Mostra els candidats que tenen mes de xxx anys``<br>
+``Mostra els candidats que tenen mes de xxx anys``
 
-*** SELECT TIMESTAMPDIFF(YEAR,data_naixement,CURDATE()) AS Edat<br>
+SELECT TIMESTAMPDIFF(YEAR,data_naixement,CURDATE()) AS Edat<br>
 	FROM persones<br>
 WHERE TIMESTAMPDIFF(YEAR,data_naixement,CURDATE()) >= 25;
 
