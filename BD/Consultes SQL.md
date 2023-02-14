@@ -9,10 +9,11 @@ SELECT TIMESTAMPDIFF(YEAR,data_naixement,CURDATE()) AS Edat<br>
 WHERE TIMESTAMPDIFF(YEAR,data_naixement,CURDATE()) >= 25;
 
 
-``Mostra els municipis que tenen en el nom xxx``
+``Mostra tota l'informació de municipis que tenen en el nom xxx``
 
 SELECT *<br>
-	FROM municipis;
+	FROM municipis<br>
+WHERE nom = 'xxx';
 
 ``Mostra el nom complet dels candidats``
 
