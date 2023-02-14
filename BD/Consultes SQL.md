@@ -1,9 +1,8 @@
 BEGIN;
 
- ### Categoria 1: 5 preguntes de consultes simples: inclou una sola taula, funcions,
-funcions d'agregat o grups. (0,5 punts)
+ ### Categoria 1: 5 preguntes de consultes simples: inclou una sola taula, funcions, funcions d'agregat o grups. (0,5 punts)
 
-<em>Mostra els candidats que tenen mes de xxx anys</em>
+ #### <em>Mostra els candidats que tenen mes de xxx anys</em>
 
 SELECT TIMESTAMPDIFF(YEAR,data_naixement,CURDATE()) AS Edat<br>
 	FROM persones<br>
