@@ -8,9 +8,7 @@ funcions d'agregat o grups. (0,5 punts)**
 -- Mostra els candidats que tenen mes de xxx anys
 
 SELECT TIMESTAMPDIFF(YEAR,data_naixement,CURDATE()) AS Edat
-
 	FROM persones
-	
 WHERE TIMESTAMPDIFF(YEAR,data_naixement,CURDATE()) >= 25;
 
 
