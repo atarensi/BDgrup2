@@ -1,23 +1,23 @@
 BEGIN;
 
--- CATEGORIA 1
-
 **Categoria 1: 5 preguntes de consultes simples: inclou una sola taula, funcions,
 funcions d'agregat o grups. (0,5 punts)**
 
--- Mostra els candidats que tenen mes de xxx anys
+<em>Mostra els candidats que tenen mes de xxx anys</em>
 
 SELECT TIMESTAMPDIFF(YEAR,data_naixement,CURDATE()) AS Edat<br>
 	FROM persones<br>
 WHERE TIMESTAMPDIFF(YEAR,data_naixement,CURDATE()) >= 25;
 
 
--- Mostra els municipis que tenen en el nom xxx
-SELECT *
+<em>Mostra els municipis que tenen en el nom xxx</em>
+
+SELECT *<br>
 	FROM municipis;
 
--- Mostra el nom complet dels candidats
-SELECT CONCAT(nom, ' ',cog1 , ' ' ,cog2) AS Nom_complet
+<em>Mostra el nom complet dels candidats</em>
+
+SELECT CONCAT(nom, ' ',cog1 , ' ' ,cog2) AS Nom_complet<br>
 	FROM persones;
 
 -- Recompte de vots al mes X
