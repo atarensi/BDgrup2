@@ -1,6 +1,6 @@
 BEGIN;
 
-### Categoria 1: 5 preguntes de consultes simples: inclou una sola taula, funcions, funcions d'agregat o grups. (0,5 punts)
+### Categoria 1: 
 
 #### <em>Mostra els candidats que tenen mes de xxx anys</em>
 
@@ -24,6 +24,12 @@ SELECT CONCAT(nom, ' ',cog1 , ' ' ,cog2) AS Nom_complet<br>
 SELECT COUNT(eleccions_id) as vots<br>
 	FROM eleccions<br>
 WHERE MONTH (mes) = ?;
+#### <em>Mostra la quantitat de candidats per cada provincia</em>
+SELECT c.provincia_id, COUNT(*) AS num_candidats <br>
+	  FROM candidats c<br>
+	GROUP BY c.candidat_id<br>
+    HAVING c.candidat_id IS NOT NULL<br>
+    ORDER BY num_candidats;<br>
 
 ### Categoria 2: 5 preguntes de consultes de combinacions de més d'una taula: INNER JOINS, LEFT JOINS. (1 punt)
 
