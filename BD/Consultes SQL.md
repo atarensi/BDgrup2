@@ -46,7 +46,13 @@ SELECT c.provincia_id, COUNT(*) AS num_candidats <br>
 
 
 ### Categoria 3:
-
+``Mostra les persones que han sigut candidates mes de 2 vegades``
+SELECT persona_id AS Id_persona, CONCAT(nom,' ',cog1 ,' ',cog2) AS Nom_complet<br>
+	FROM persones<br>
+WHERE persona_id IN (SELECT candidat_id<br>
+						FROM candidats<br>
+						GROUP BY candidat_id<br>
+					HAVING COUNT(*) < 2);<br>
 
 
 
