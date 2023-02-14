@@ -54,7 +54,7 @@ SELECT c.provincia_id, COUNT(*) AS num_candidats <br>
 
 ### Categoria 4:
 
-``Mostrara l'informació de tot aquell que tingui el codi_ine entre el 5 i el 10``
+``Mostrara l'informació de municipis de tot aquell que tingui el codi_ine entre el 5 i el 10``
 
 WITH RECURSIVE codi (n) AS (<br>
 SELECT 5<br>
