@@ -44,7 +44,16 @@ INNER JOINS, LEFT JOINS. (1 punt)*/
 
 -- CATEGORIA 4
 -- Categoria 4: 1 pregunta utilitzant WINDOW FUNCTIONS o recursivitat (1 punt)
-
+WITH RECURSIVE codi (n) AS (
+SELECT 1
+UNION
+SELECT n + 1
+FROM codi
+WHERE n < 10
+)
+SELECT n, m.*
+	FROM codi a
+    INNER JOIN municipis1 m ON m.codi_ine = a.n;
 
 
 COMMIT;
