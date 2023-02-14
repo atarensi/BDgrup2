@@ -2,38 +2,40 @@ BEGIN;
 
 ### Categoria 1: 
 
-#### <em>Mostra els candidats que tenen mes de xxx anys</em>
+``#### Mostra els candidats que tenen mes de xxx anys``
 
 SELECT TIMESTAMPDIFF(YEAR,data_naixement,CURDATE()) AS Edat<br>
 	FROM persones<br>
 WHERE TIMESTAMPDIFF(YEAR,data_naixement,CURDATE()) >= 25;
 
 
-#### <em>Mostra els municipis que tenen en el nom xxx</em>
+``#### Mostra els municipis que tenen en el nom xxx``
 
 SELECT *<br>
 	FROM municipis;
 
-#### <em>Mostra el nom complet dels candidats</em>
+``#### Mostra el nom complet dels candidats``
 
 SELECT CONCAT(nom, ' ',cog1 , ' ' ,cog2) AS Nom_complet<br>
 	FROM persones;
 
-#### <em>Recompte de vots al mes X</em>
+``#### Recompte de vots al mes X``
 
 SELECT COUNT(eleccions_id) as vots<br>
 	FROM eleccions<br>
 WHERE MONTH (mes) = ?;
-#### <em>Mostra la quantitat de candidats per cada provincia</em>
+
+``#### Mostra la quantitat de candidats per cada provincia``
+
 SELECT c.provincia_id, COUNT(*) AS num_candidats <br>
 	  FROM candidats c<br>
 	GROUP BY c.candidat_id<br>
     HAVING c.candidat_id IS NOT NULL<br>
-    ORDER BY num_candidats;<br>
+    ORDER BY num_candidats;
 
 ### Categoria 2: 5 preguntes de consultes de combinacions de més d'una taula: INNER JOINS, LEFT JOINS. (1 punt)
 
-#### <em>Mostra als candidats que han estat mes de xx vegades com a S = suplent</em>
+``#### Mostra als candidats que han estat mes de xx vegades com a S = suplent``
 
 
 
