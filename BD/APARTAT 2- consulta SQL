@@ -18,7 +18,10 @@ SELECT *
 SELECT CONCAT(nom, ' ',cog1 , ' ' ,cog2) AS Nom_complet
 	FROM persones;
 
-
+-- Recompte de vots al mes X
+SELECT COUNT(eleccions_id) as vots
+	FROM eleccions
+WHERE MONTH (mes) = ?;
 
 -- CATEGORIA 2
 /**Categoria 2: 5 preguntes de consultes de combinacions de més d'una taula:
