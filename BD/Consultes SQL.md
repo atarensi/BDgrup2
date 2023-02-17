@@ -36,7 +36,13 @@ SELECT c.provincia_id, COUNT(*) AS num_candidats <br>
 
 ### Categoria 2:
 
-``Mostra als candidats que han estat mes de xx vegades com a S = suplent``
+``Mostra al numero total de candidats per cada provincia``
+SELECT p.provincia_id, COUNT(c.candidat_id) <br>
+	FROM provincies p <br>
+	INNER JOIN candidats c ON c.provincia_id = p.provincia_id <br>
+    GROUP BY p.provincia_id <br>
+ORDER BY COUNT(c.candidat_id); <br>
+	
 
 ``Cantidad de mujeres que se han presentado en 2022``
 
