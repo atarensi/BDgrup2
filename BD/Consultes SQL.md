@@ -49,6 +49,7 @@ WHERE p.sexe = 'F' AND e.any = 2022 <br>
 GROUP BY p.sexe;
 
 ``nombre personas que viven en x Municipio``
+
 SELECT p.nom,p.cog1,p.cog2 <br>
 	FROM persones p <br>
     INNER JOIN candidats c ON c.persona_id = p.persona_id <br>
