@@ -11,6 +11,7 @@ public class Leer {
         int id;
         String nom;
         String ine;
+        String ca;
         BufferedReader bfLector = null;
         try {
 
@@ -24,10 +25,10 @@ public class Leer {
         bfLector = Files.newBufferedReader(pathFitxer, StandardCharsets.ISO_8859_1);
         String strLinia;
         while ((strLinia = bfLector.readLine()) != null) {
-            id = Integer.parseInt(strLinia.substring(9, 11));
             nom = strLinia.substring(14,64).trim();
             ine = strLinia.substring(11,13);
-            if (ine.equals("99") && id != 99) Insert.comunitatsAutonomes(id, nom, ine, con);
+            ca = strLinia.substring(9,11);
+            if (ine.equals("99")) Insert.comunitatsAutonomes(nom, ca, con);
 
         }
 
@@ -49,6 +50,7 @@ public class Leer {
     public static void provincies (Connection con) {
         int id;
         String nom;
+        String ca;
         String ine;
         int num_escons;
         BufferedReader bfLector = null;
@@ -64,11 +66,11 @@ public class Leer {
             bfLector = Files.newBufferedReader(pathFitxer, StandardCharsets.ISO_8859_1);
             String strLinia;
             while ((strLinia = bfLector.readLine()) != null) {
-                id = Integer.parseInt(strLinia.substring(9, 11));
                 nom = strLinia.substring(14,64).trim();
+                ca = strLinia.substring(9,11);
                 ine = strLinia.substring(11,13);
                 num_escons = Integer.parseInt(strLinia.substring(149,155));
-                if (!ine.equals("99")) Insert.provincies(id, nom, ine, num_escons, con);
+                if (!ine.equals("99")) Insert.provincies(nom, ine, ca, num_escons, con);
 
             }
 
