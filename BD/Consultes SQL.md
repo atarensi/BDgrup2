@@ -37,6 +37,7 @@ SELECT c.provincia_id, COUNT(*) AS num_candidats <br>
 ### Categoria 2:
 
 ``Mostra al numero total de candidats per cada provincia``
+
 SELECT p.provincia_id, COUNT(c.candidat_id) <br>
 	FROM provincies p <br>
 	INNER JOIN candidats c ON c.provincia_id = p.provincia_id <br>
