@@ -48,6 +48,13 @@ SELECT COUNT(p.sexe) AS "vots dones" <br>
 WHERE p.sexe = 'F' AND e.any = 2022 <br>
 GROUP BY p.sexe;
 
+``nombre personas que viven en x Municipio``
+SELECT p.nom,p.cog1,p.cog2 <br>
+	FROM persones p <br>
+    INNER JOIN candidats c ON c.persona_id = p.persona_id <br>
+    INNER JOIN provincies pr ON pr.provincia_id = c.provincia_id <br>
+    INNER JOIN municipis m ON m.provincia_id = pr.provincia_id <br>
+WHERE m.nom = 'Blanes'
 
 
 ### Categoria 3:
