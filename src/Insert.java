@@ -3,7 +3,7 @@ import java.util.Calendar;
 public class Insert {
 
     // Función que coge la información de las comunidades autónomas y lo inserta en la BBDD
-    public static void comunitatsAutonomes(int id, String nom, String ine, Connection con){
+    public static void comunitatsAutonomes(String nom, String ca, Connection con){
 
         try {
 
@@ -11,14 +11,13 @@ public class Insert {
 
             Calendar calendar = Calendar.getInstance();
             java.sql.Date startDate = new java.sql.Date(calendar.getTime().getTime());
-            String query = " INSERT INTO comunitats_autonomes (comunitat_aut_id, nom,codi_ine)"
-                    + " values (?, ?, ?)";
+            String query = " INSERT INTO comunitats_autonomes (nom,codi_ine)"
+                    + " values (?, ?)";
 
             // create the mysql insert preparedstatement
             PreparedStatement preparedStmt = con.prepareStatement(query);
-            preparedStmt.setInt(1, id);
-            preparedStmt.setString (2, nom);
-            preparedStmt.setString (3, ine);
+            preparedStmt.setString (1, nom);
+            preparedStmt.setString (2, ca);
 
 
 
@@ -32,7 +31,7 @@ public class Insert {
 
 
     // Función que coge la información de las provincias y la inserta en la BBDD
-    public static void provincies (int id, String nom, String ine, int num_escons, Connection con) {
+    public static void provincies (String nom, String ine, String ca, int num_escons, Connection con) {
 
         try {
 
@@ -45,7 +44,7 @@ public class Insert {
 
             // create the mysql insert preparedstatement
             PreparedStatement preparedStmt = con.prepareStatement(query);
-            preparedStmt.setInt(1, id);
+            preparedStmt.setInt(1, Select.provincies(con, ca));
             preparedStmt.setString (2, nom);
             preparedStmt.setString (3, ine);
             preparedStmt.setInt(4,num_escons);
