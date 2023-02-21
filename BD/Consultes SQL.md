@@ -65,6 +65,13 @@ SELECT p.nom,p.cog1,p.cog2 <br>
     INNER JOIN municipis m ON m.provincia_id = pr.provincia_id <br>
 WHERE m.nom = 'Blanes'
 
+``Mostra als candidats suplent de cada provincia``
+
+SELECT per.persona_id, per.nom AS nom_suplent, prov.nom AS nom_provincia <br>
+	FROM persones per <br>
+	INNER JOIN candidats c ON c.persona_id = per.persona_id <br>
+	INNER JOIN provincies prov ON prov.provincia_id = c.provincia_id <br>
+WHERE c.tipus = 'S';
 
 ### Categoria 3:
 ``Mostra les persones que han sigut candidates mes de 2 vegades``
