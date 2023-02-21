@@ -90,6 +90,7 @@ WHERE persona_id NOT IN (SELECT DISTINCT candidat_id <br>
                                 WHERE candidat_id IS NOT NULL);
 
 ``3- Mostrar el nom de les provincies que tenene més vots``
+
 SELECT p.nom nom_provincies, vc.vots <br>
 	FROM vots_candidatures_prov vc <br>
     INNER JOIN provincies p ON p.provincia_id = vc.provincia_id <br>
