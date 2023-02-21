@@ -1,6 +1,6 @@
 BEGIN;
 
-### Categoria 1: 
+### Categoria 1 - Consultes simples:
 
 ``1- Mostra els candidats que tenen mes de xxx anys``
 
@@ -34,7 +34,8 @@ SELECT c.provincia_id, COUNT(*) AS num_candidats <br>
     HAVING c.candidat_id IS NOT NULL<br>
     ORDER BY num_candidats;
 
-### Categoria 2:
+
+### Categoria 2 - Consultes de combinacions:
 
 ``1- Mostra al numero total de candidats per cada municipi``
 
@@ -45,7 +46,6 @@ INNER JOIN municipis m ON m.provincia_id = p.provincia_id <br>
 GROUP BY m.provincia_id <br>
 ORDER BY COUNT(c.candidat_id);
 	
-
 ``2- Cantidad de mujeres que se han presentado en 2022``
 
 SELECT COUNT(p.sexe) AS "vots dones" <br>
@@ -73,7 +73,7 @@ SELECT CONCAT(per.nom,' ',per.cog1 ,' ',per.cog2) AS nom_suplent,per.persona_id 
 	INNER JOIN provincies prov ON prov.provincia_id = c.provincia_id <br>
 WHERE c.tipus = 'S';
 
-### Categoria 3:
+### Categoria 3 - Subconsultes:
 ``1- Mostra les persones que han sigut candidates mes de 2 vegades``
 
 SELECT persona_id AS Id_persona, CONCAT(nom,' ',cog1 ,' ',cog2) AS Nom_complet <br>
@@ -91,10 +91,7 @@ WHERE persona_id NOT IN (SELECT DISTINCT candidat_id <br>
 								FROM candidats <br>
                                 WHERE candidat_id IS NOT NULL);
 
-
-
-
-### Categoria 4:
+### Categoria 4 - Recursivitat:
 
 ``Mostrara l'informació de municipis de tot aquell que tingui el codi_ine entre el 5 i el 10``
 
