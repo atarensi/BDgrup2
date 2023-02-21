@@ -2,31 +2,31 @@ BEGIN;
 
 ### Categoria 1: 
 
-``Mostra els candidats que tenen mes de xxx anys``
+``1- Mostra els candidats que tenen mes de xxx anys``
 
 SELECT TIMESTAMPDIFF(YEAR,data_naixement,CURDATE()) AS Edat<br>
 	FROM persones<br>
 WHERE TIMESTAMPDIFF(YEAR,data_naixement,CURDATE()) >= 25;
 
 
-``Mostra tota l'informació de municipis que tenen en el nom xxx``
+``2- Mostra tota l'informació de municipis que tenen en el nom xxx``
 
 SELECT *<br>
 	FROM municipis<br>
 WHERE nom = 'xxx';
 
-``Mostra el nom complet dels candidats``
+``3- Mostra el nom complet dels candidats``
 
 SELECT CONCAT(nom, ' ',cog1 , ' ' ,cog2) AS Nom_complet<br>
 	FROM persones;
 
-`` Recompte de vots al mes X``
+``4- Recompte de vots al mes X``
 
 SELECT COUNT(eleccions_id) as vots<br>
 	FROM eleccions<br>
 WHERE MONTH (mes) = ?;
 
-``Mostra la quantitat de candidats per cada provincia``
+``5- Mostra la quantitat de candidats per cada provincia``
 
 SELECT c.provincia_id, COUNT(*) AS num_candidats <br>
 	  FROM candidats c<br>
@@ -36,7 +36,7 @@ SELECT c.provincia_id, COUNT(*) AS num_candidats <br>
 
 ### Categoria 2:
 
-``Mostra al numero total de candidats per cada municipi``
+``1- Mostra al numero total de candidats per cada municipi``
 
 SELECT p.provincia_id, COUNT(c.candidat_id) AS num_candidats <br>
 FROM provincies p <br>
@@ -46,7 +46,7 @@ GROUP BY m.provincia_id <br>
 ORDER BY COUNT(c.candidat_id);
 	
 
-``Cantidad de mujeres que se han presentado en 2022``
+``2- Cantidad de mujeres que se han presentado en 2022``
 
 SELECT COUNT(p.sexe) AS "vots dones" <br>
 	FROM persones p <br>
@@ -56,7 +56,7 @@ SELECT COUNT(p.sexe) AS "vots dones" <br>
 WHERE p.sexe = 'F' AND e.any = 2022 <br>
 GROUP BY p.sexe;
 
-``nombre personas que viven en x Municipio``
+``3- Nombre personas que viven en x Municipio``
 
 SELECT p.nom,p.cog1,p.cog2 <br>
 	FROM persones p <br>
