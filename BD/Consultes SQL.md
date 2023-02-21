@@ -65,7 +65,7 @@ SELECT p.nom,p.cog1,p.cog2 <br>
     INNER JOIN municipis m ON m.provincia_id = pr.provincia_id <br>
 WHERE m.nom = 'Blanes'
 
-``Mostra als candidats suplent de cada provincia``
+``4- Mostra als candidats suplent de cada provincia``
 
 SELECT CONCAT(per.nom,' ',per.cog1 ,' ',per.cog2) AS nom_suplent,per.persona_id AS Id_persona, prov.nom AS nom_provincia <br>
 	FROM persones per <br>
@@ -74,7 +74,7 @@ SELECT CONCAT(per.nom,' ',per.cog1 ,' ',per.cog2) AS nom_suplent,per.persona_id 
 WHERE c.tipus = 'S';
 
 ### Categoria 3:
-``Mostra les persones que han sigut candidates mes de 2 vegades``
+``1- Mostra les persones que han sigut candidates mes de 2 vegades``
 
 SELECT persona_id AS Id_persona, CONCAT(nom,' ',cog1 ,' ',cog2) AS Nom_complet <br>
 	FROM persones<br>
@@ -83,7 +83,7 @@ WHERE persona_id IN (SELECT candidat_id<br>
 						GROUP BY candidat_id<br>
 					HAVING COUNT(*) < 2);<br>
 
-``Mostra les persones que no son candidates``
+``2- Mostra les persones que no son candidates``
 
 SELECT persona_id, nom <br>
 	FROM persones <br>
