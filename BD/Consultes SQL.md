@@ -1,5 +1,3 @@
-BEGIN;
-
 ### Categoria 1 - Consultes simples:
 
 ``1- Mostra els candidats que tenen mes de xxx anys``
@@ -105,6 +103,3 @@ WHERE n <= 10<br>
 SELECT n, m.*<br>
 	FROM codi a<br>
     INNER JOIN municipis1 m ON m.codi_ine = a.n;
-
-
-COMMIT;
