@@ -71,6 +71,12 @@ SELECT CONCAT(per.nom,' ',per.cog1 ,' ',per.cog2) AS nom_suplent,per.persona_id 
 	INNER JOIN provincies prov ON prov.provincia_id = c.provincia_id <br>
 WHERE c.tipus = 'S';
 
+``cantidad de municipios que son de catalunya``
+SELECT m.nom <br>
+FROM municipis m <br>
+INNER JOIN provincies p ON p.provincia_id = m.provincia_id <br>
+INNER JOIN comunitats_autonomes ca ON ca.comunitat_aut_id = p.comunitat_aut_id <br>
+WHERE ca.nom = 'Catalunya';
 ### Categoria 3 - Subconsultes:
 ``1- Mostra les persones que han sigut candidates mes de 2 vegades``
 
