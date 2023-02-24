@@ -10,8 +10,8 @@ USE eleccions_generals_espanyoles;
 
 CREATE TABLE comunitats_autonomes (
 	comunitat_aut_id TINYINT UNSIGNED AUTO_INCREMENT,
-	nom			VARCHAR(45),
-	codi_ine		CHAR(2) NOT NULL,
+	nom		VARCHAR(45),
+	codi_ine	CHAR(2) NOT NULL,
 	CONSTRAINT pk_comunitats_autonomes PRIMARY KEY (comunitat_aut_id),
 	CONSTRAINT uk_com_aut_codi_ine UNIQUE (codi_ine)    
 );
@@ -44,10 +44,10 @@ CREATE TABLE municipis (
 
 CREATE TABLE eleccions (
 	eleccio_id	TINYINT UNSIGNED NOT NULL AUTO_INCREMENT,
-    nom			VARCHAR(45),
-    data		DATE  NOT NULL,
-    any			YEAR  NOT NULL COMMENT "Any el qual s'han celebrat les eleccions",
-    mes			TINYINT UNSIGNED NOT NULL COMMENT "El mes que s'han celebrat les eleccions",
+    	nom			VARCHAR(45),
+    	data		DATE  NOT NULL,
+    	any			YEAR  NOT NULL COMMENT "Any el qual s'han celebrat les eleccions",
+    	mes			TINYINT UNSIGNED NOT NULL COMMENT "El mes que s'han celebrat les eleccions",
     CONSTRAINT pk_eleccions PRIMARY KEY (eleccio_id),
 	CONSTRAINT uk_eleccions_any_mes UNIQUE (any,mes), 
     CONSTRAINT uk_eleccions_data UNIQUE (data)
@@ -55,14 +55,14 @@ CREATE TABLE eleccions (
 
 CREATE TABLE eleccions_municipis (
 	eleccio_id	TINYINT UNSIGNED NOT NULL,
-    municipi_id		SMALLINT UNSIGNED NOT NULL,
-    num_meses		SMALLINT UNSIGNED,
-    cens		INT UNSIGNED,
-    vots_emesos		INT UNSIGNED,
-    vots_valids		INT UNSIGNED,
-    vots_candidatures	INT UNSIGNED,
-    vots_blanc		INT UNSIGNED,
-    vots_nuls		INT UNSIGNED,
+    	municipi_id		SMALLINT UNSIGNED NOT NULL,
+    	num_meses		SMALLINT UNSIGNED,
+	cens		INT UNSIGNED,
+    	vots_emesos		INT UNSIGNED,
+    	vots_valids		INT UNSIGNED,
+    	vots_candidatures	INT UNSIGNED,
+    	vots_blanc		INT UNSIGNED,
+    	vots_nuls		INT UNSIGNED,
     INDEX idx_fk_eleccions_municipis_eleccions (eleccio_id),
     INDEX fk_eleccions_municipis_municipis (municipi_id),
     CONSTRAINT pk_eleccions_municipis PRIMARY KEY (eleccio_id,municipi_id),
@@ -75,13 +75,13 @@ CREATE TABLE eleccions_municipis (
 
 CREATE TABLE candidatures (
 	candidatura_id	INT UNSIGNED NOT NULL AUTO_INCREMENT,
-    eleccio_id		TINYINT UNSIGNED NOT NULL,
-    codi_candidatura	CHAR(6),
-    nom_curt		VARCHAR(50),
-    nom_llarg		VARCHAR(150),
-    codi_acumulacio_provincia	CHAR(6),
-    codi_acumulacio_ca		CHAR(6),
-    codi_acumulario_nacional	CHAR(6),
+    	eleccio_id		TINYINT UNSIGNED NOT NULL,
+    	codi_candidatura	CHAR(6),
+    	nom_curt		VARCHAR(50),
+    	nom_llarg		VARCHAR(150),
+    	codi_acumulacio_provincia	CHAR(6),
+    	codi_acumulacio_ca		CHAR(6),
+    	codi_acumulario_nacional	CHAR(6),
     INDEX idx_fk_eleccions_partits_eleccions (eleccio_id),
     CONSTRAINT pk_eleccions PRIMARY KEY (candidatura_id),
 		CONSTRAINT fk_eleccions_partits_eleccions FOREIGN KEY (eleccio_id) 
@@ -90,13 +90,13 @@ CREATE TABLE candidatures (
 );
 
 CREATE TABLE persones (
-    persona_id		INT UNSIGNED NOT NULL,
-    nom			VARCHAR(30) ,
-    cog1		VARCHAR(30),
-    cog2		VARCHAR(30),
-    sexe		ENUM('M','F'),
-    data_naixement	DATE,
-    dni			CHAR(10) NOT NULL,
+    	persona_id		INT UNSIGNED NOT NULL,
+    	nom			VARCHAR(30) ,
+    	cog1		VARCHAR(30),
+    	cog2		VARCHAR(30),
+    	sexe		ENUM('M','F'),
+    	data_naixement	DATE,
+    	dni			CHAR(10) NOT NULL,
     CONSTRAINT pk_persones PRIMARY KEY (persona_id),
 	CONSTRAINT uk_candidats_dni UNIQUE (dni)
 );
