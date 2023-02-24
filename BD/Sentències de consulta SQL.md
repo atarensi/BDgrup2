@@ -3,7 +3,7 @@
 ``1- Mostra els candidats que tenen mes de 25 anys``
 
 SELECT nom AS Nom, cog1 AS Cognom, TIMESTAMPDIFF(YEAR,data_naixement,CURDATE()) AS Edat<br>
-	FROM persones<br>
+&emsp;&emsp; FROM persones<br>
 WHERE TIMESTAMPDIFF(YEAR,data_naixement,CURDATE()) >= 25;
 
 
