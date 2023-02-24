@@ -1,6 +1,6 @@
 ### Categoria 1 - Consultes simples:
 
-``1- Mostra els candidats que tenen mes de xxx anys``
+``1- Mostra els candidats que tenen mes de 25 anys``
 
 SELECT TIMESTAMPDIFF(YEAR,data_naixement,CURDATE()) AS Edat<br>
 	FROM persones<br>
