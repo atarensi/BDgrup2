@@ -7,11 +7,11 @@ SELECT nom AS Nom, cog1 AS Cognom, TIMESTAMPDIFF(YEAR,data_naixement,CURDATE()) 
 WHERE TIMESTAMPDIFF(YEAR,data_naixement,CURDATE()) >= 25;
 
 
-``2- Mostra tota l'informació de municipis que tenen en el nom xxx``
+``2- Mostra tota l'informació de les comunitats autonomes que tenen en el nom Cat``
 
 SELECT *<br>
-	FROM municipis<br>
-WHERE nom = 'xxx';
+	FROM comunitats_autonomes<br>
+WHERE nom LIKE '%Cat%';
 
 ``3- Mostra el nom complet de totes les persones``
 
