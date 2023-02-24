@@ -125,4 +125,50 @@ public class Leer {
             }
         }
     }
+
+    // Función para leer el archivo 03 y buscar las candidaturas
+    public static void candidatures (Connection con) {
+        String codi;
+        String nomCurt;
+        String nomLlarg;
+        String codi_ac_prov;
+        String codi_ac_ca;
+        String codi_ac_nac;
+        int any;
+        int num_escons;
+        BufferedReader bfLector = null;
+        try {
+
+            Path pathActual = Paths.get(("out"));
+            pathActual = pathActual.toAbsolutePath();
+
+            Path pathFitxer = Paths.get(pathActual.toString(), "02201904_MESA", "03021904.DAT");
+
+            //objReader = new BufferedReader(new FileReader(pathFitxer.toString()));
+
+            bfLector = Files.newBufferedReader(pathFitxer, StandardCharsets.ISO_8859_1);
+            String strLinia;
+            while ((strLinia = bfLector.readLine()) != null) {
+                codi = strLinia.substring(8,14);
+                nomCurt = strLinia.substring(14,64);
+                nomLlarg = strLinia.substring(64,214);
+                codi_ac_prov = strLinia.substring(214,220);
+                codi_ac_ca = strLinia.substring(220,226);
+                codi_ac_nac = strLinia.substring(226,232);
+                any = Integer.parseInt(strLinia.substring(2,6));
+                Insert.candidatures(codi, nomCurt, nomLlarg, codi_ac_prov, codi_ac_ca, codi_ac_nac, any, con);
+            }
+
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (bfLector != null)
+                    bfLector.close();
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        }
+    }
 }
