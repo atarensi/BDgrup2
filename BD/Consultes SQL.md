@@ -104,7 +104,16 @@ SELECT p.nom nom_provincies, vc.vots <br>
 	FROM vots_candidatures_prov vc <br>
     INNER JOIN provincies p ON p.provincia_id = vc.provincia_id <br>
 WHERE vc.vots = (SELECT MAX(vots) <br>
-						FROM vots_candidatures_prov); <br>
+		FROM vots_candidatures_prov); 
+		
+``4- Mostra les provincies i comunitats que tenen candidats Suplents``
+
+SELECT p.provincia_id, p.nom AS nom_provincia, c.nom AS nom_comunitat <br>
+	FROM provincies p  <br>
+	INNER JOIN comunitats_autonomes c ON c.comunitat_aut_id = p.comunitat_aut_id <br>
+    WHERE p.provincia_id = (SELECT c.provincia_id <br>
+				FROM candidats c <br>
+                            WHERE tipus = 'S');
 
 ### Categoria 4 - Recursivitat:
 
