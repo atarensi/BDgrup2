@@ -2,8 +2,8 @@
 
 ``1- Mostra els candidats que tenen mes de 25 anys``
 
-SELECT TIMESTAMPDIFF(YEAR,data_naixement,CURDATE()) AS Edat<br>
-	:FROM persones<br>
+SELECT nom AS Nom, cog1 AS Cognom, TIMESTAMPDIFF(YEAR,data_naixement,CURDATE()) AS Edat<br>
+	FROM persones<br>
 WHERE TIMESTAMPDIFF(YEAR,data_naixement,CURDATE()) >= 25;
 
 
@@ -13,7 +13,7 @@ SELECT *<br>
 	FROM municipis<br>
 WHERE nom = 'xxx';
 
-``3- Mostra el nom complet dels candidats``
+``3- Mostra el nom complet de totes les persones``
 
 SELECT CONCAT(nom, ' ',cog1 , ' ' ,cog2) AS Nom_complet<br>
 	FROM persones;
