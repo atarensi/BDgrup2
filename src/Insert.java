@@ -60,6 +60,7 @@ public class Insert {
 
     }
 
+    // Función que coge la info de los municipio y la introduce en la BBDD
     public static void municipis (String nom, String ine, String codi, String ine_prov, Connection con) {
 
         try {
@@ -77,6 +78,40 @@ public class Insert {
             preparedStmt.setString (2, ine);
             preparedStmt.setInt (3, Select.municipis(con, ine_prov));
             preparedStmt.setString(4, codi);
+
+
+
+            // execute the preparedstatement
+            preparedStmt.execute();
+
+        }catch(Exception e){
+            System.out.println(e);
+        }
+
+    }
+
+    // Función que coge la info de las candidaturas y la introduce en la BBDD
+    public static void candidatures(String codi, String nomCurt, String nomLlarg, String codi_ac_prov, String codi_ac_ca, String codi_ac_nac, int any, Connection con) {
+
+        try {
+
+            Class.forName("com.mysql.cj.jdbc.Driver");
+
+            Calendar calendar = Calendar.getInstance();
+            java.sql.Date startDate = new java.sql.Date(calendar.getTime().getTime());
+            String query = " INSERT INTO candidatures (eleccio_id,codi_candidatura,nom_curt,nom_llarg," +
+                    "codi_acumulacio_provincia,codi_acumulacio_ca,codi_acumulacio_nacional)"
+                    + " values (?, ?, ?, ?, ?, ?, ?)";
+
+            // create the mysql insert preparedstatement
+            PreparedStatement preparedStmt = con.prepareStatement(query);
+            preparedStmt.setInt(1, Select.candidatures(any, con));
+            preparedStmt.setString (2, codi);
+            preparedStmt.setString (3, nomCurt);
+            preparedStmt.setString(4, nomLlarg);
+            preparedStmt.setString(5, codi_ac_prov);
+            preparedStmt.setString(6, codi_ac_ca);
+            preparedStmt.setString(7, codi_ac_nac);
 
 
 
