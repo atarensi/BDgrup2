@@ -16,7 +16,7 @@ WHERE nom LIKE '%Cat%';
 ``3- Mostra el nom complet de totes les persones``
 
 SELECT CONCAT(nom, ' ',cog1 , ' ' ,cog2) AS Nom_complet <br>
-	FROM persones <br>s
+	FROM persones <br>
 WHERE sexe='F';
 
 ``4- Recompte de vots al mes X``
@@ -79,6 +79,7 @@ FROM municipis m <br>
 INNER JOIN provincies p ON p.provincia_id = m.provincia_id <br>
 INNER JOIN comunitats_autonomes ca ON ca.comunitat_aut_id = p.comunitat_aut_id <br>
 WHERE ca.nom = 'Catalunya';
+
 ### Categoria 3 - Subconsultes:
 ``1- Mostra les persones que han sigut candidates mes de 2 vegades``
 
