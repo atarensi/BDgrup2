@@ -59,4 +59,33 @@ public class Insert {
         }
 
     }
+
+    public static void municipis (String nom, String ine, String codi, String ine_prov, Connection con) {
+
+        try {
+
+            Class.forName("com.mysql.cj.jdbc.Driver");
+
+            Calendar calendar = Calendar.getInstance();
+            java.sql.Date startDate = new java.sql.Date(calendar.getTime().getTime());
+            String query = " INSERT INTO municipis (nom,codi_ine,provincia_id,districte)"
+                    + " values (?, ?, ?, ?)";
+
+            // create the mysql insert preparedstatement
+            PreparedStatement preparedStmt = con.prepareStatement(query);
+            preparedStmt.setString(1, nom);
+            preparedStmt.setString (2, ine);
+            preparedStmt.setInt (3, Select.municipis(con, ine_prov));
+            preparedStmt.setString(4, codi);
+
+
+
+            // execute the preparedstatement
+            preparedStmt.execute();
+
+        }catch(Exception e){
+            System.out.println(e);
+        }
+
+    }
 }
