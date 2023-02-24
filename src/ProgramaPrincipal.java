@@ -9,6 +9,8 @@ public class ProgramaPrincipal {
         ImportarComunitatsAutonomes();
         ImportProvincies();
         ImportMunicipis();
+        ImportCandidaturas();
+
         con.close();
     }
 
@@ -25,6 +27,11 @@ public class ProgramaPrincipal {
 
     // Importación de los datos de lal tabla Municipis
     public static void ImportMunicipis() {
+        Leer.municipis(con);
+    }
+
+    // Importación de los datos de lal tabla Candidaturas
+    public static void ImportCandidaturas() {
         Leer.municipis(con);
     }
 }
