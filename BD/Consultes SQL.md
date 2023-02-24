@@ -3,7 +3,7 @@
 ``1- Mostra els candidats que tenen mes de 25 anys``
 
 SELECT TIMESTAMPDIFF(YEAR,data_naixement,CURDATE()) AS Edat<br>
-	FROM persones<br>
+	:FROM persones<br>
 WHERE TIMESTAMPDIFF(YEAR,data_naixement,CURDATE()) >= 25;
 
 
