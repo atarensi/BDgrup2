@@ -16,7 +16,7 @@ WHERE nom LIKE '%Cat%';
 ``3- Mostra el nom complet de totes les persones``
 
 SELECT CONCAT(nom, ' ',cog1 , ' ' ,cog2) AS Nom_complet <br>
-	FROM persones <br>
+	FROM persones <br>s
 WHERE sexe='F';
 
 ``4- Recompte de vots al mes X``
