@@ -8,6 +8,7 @@ public class ProgramaPrincipal {
         con= DriverManager.getConnection("jdbc:mysql://10.2.112.28:3306/prova","perepi","pastanaga");
         ImportarComunitatsAutonomes();
         ImportProvincies();
+        ImportMunicipis();
         con.close();
     }
 
@@ -20,5 +21,10 @@ public class ProgramaPrincipal {
     // Importación de los datos de la tabla Provincies
     public static void ImportProvincies() {
         Leer.provincies(con);
+    }
+
+    // Importación de los datos de lal tabla Municipis
+    public static void ImportMunicipis() {
+        Leer.municipis(con);
     }
 }
