@@ -123,4 +123,36 @@ public class Insert {
         }
 
     }
+    
+    // Función que coge la info de las personas y la introduce en la BBDD
+    public static void personas (String nom, String cog1, String cog2, String sexe, String dob, String dni, Connection con) {
+
+        try {
+
+            Class.forName("com.mysql.cj.jdbc.Driver");
+
+            Calendar calendar = Calendar.getInstance();
+            java.sql.Date startDate = new java.sql.Date(calendar.getTime().getTime());
+            String query = " INSERT INTO persones (nom,cog1,cog2,sexe,data_naixement,dni)"
+                    + " values (?, ?, ?, ?, ?, ?)";
+
+            // create the mysql insert preparedstatement
+            PreparedStatement preparedStmt = con.prepareStatement(query);
+            preparedStmt.setString(1, nom);
+            preparedStmt.setString (2, cog1);
+            preparedStmt.setString (3, cog2);
+            preparedStmt.setString(4, sexe);
+            preparedStmt.setString(5, dob);
+            preparedStmt.setString(6, dni);
+
+
+
+            // execute the preparedstatement
+            preparedStmt.execute();
+
+        }catch(Exception e){
+            System.out.println(e);
+        }
+
+    }
 }
