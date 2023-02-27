@@ -10,6 +10,7 @@ public class ProgramaPrincipal {
         ImportProvincies();
         ImportMunicipis();
         ImportCandidaturas();
+        ImportPersonas();
 
         con.close();
     }
@@ -25,13 +26,18 @@ public class ProgramaPrincipal {
         Leer.provincies(con);
     }
 
-    // Importación de los datos de lal tabla Municipis
+    // Importación de los datos de la tabla Municipis
     public static void ImportMunicipis() {
         Leer.municipis(con);
     }
 
-    // Importación de los datos de lal tabla Candidaturas
+    // Importación de los datos de la tabla Candidaturas
     public static void ImportCandidaturas() {
         Leer.municipis(con);
+    }
+    
+        // Importación de los datos de la tabla Personas
+    public static void ImportPersonas() {
+        Leer.personas(con);
     }
 }
