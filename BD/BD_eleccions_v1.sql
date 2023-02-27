@@ -10,7 +10,7 @@ USE eleccions_generals_espanyoles;
 CREATE TABLE comunitats_autonomes (
 	comunitat_aut_id TINYINT UNSIGNED NOT NULL AUTO_INCREMENT,
 	nom			VARCHAR(45),
-	codi_ine	CHAR(2) NOT NULL,
+	codi_ine		CHAR(2) NOT NULL,
 	CONSTRAINT pk_comunitats_autonomes PRIMARY KEY (comunitat_aut_id),
 	CONSTRAINT uk_com_aut_codi_ine UNIQUE (codi_ine)    
 );
