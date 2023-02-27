@@ -100,7 +100,7 @@ public class Insert {
             Calendar calendar = Calendar.getInstance();
             java.sql.Date startDate = new java.sql.Date(calendar.getTime().getTime());
             String query = " INSERT INTO candidatures (eleccio_id,codi_candidatura,nom_curt,nom_llarg," +
-                    "codi_acumulacio_provincia,codi_acumulacio_ca,codi_acumulacio_nacional)"
+                    "codi_acumulacio_provincia,codi_acumulacio_ca,codi_acumulario_nacional)"
                     + " values (?, ?, ?, ?, ?, ?, ?)";
 
             // create the mysql insert preparedstatement
