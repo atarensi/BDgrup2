@@ -89,6 +89,40 @@ public class Insert {
         }
 
     }
+    
+     // Función que coge la info de las elecciones municipales y la introduce en la BBDD
+    public static void elecciones_municipales(int any, int mes,String ine, int num_talues, int cens, int vots_cand, int vots_blanc, int vots_nuls, Connection con) {
+
+        try {
+
+            Class.forName("com.mysql.cj.jdbc.Driver");
+
+            Calendar calendar = Calendar.getInstance();
+            java.sql.Date startDate = new java.sql.Date(calendar.getTime().getTime());
+            String query = " INSERT INTO eleccions_municipals (eleccio_id,municipi_id,num_meses,cens," +
+                    "vots_candidatures,vots_blanc,vots_nuls)"
+                    + " values (?, ?, ?, ?, ?, ?, ?)";
+
+            // create the mysql insert preparedstatement
+            PreparedStatement preparedStmt = con.prepareStatement(query);
+            preparedStmt.setInt(1, Select.eleccions_muni_eleid(any, mes, con));
+            preparedStmt.setInt (2, Select.eleccions_muni_muniid(ine, con));
+            preparedStmt.setInt (3, num_talues);
+            preparedStmt.setInt(4, cens);
+            preparedStmt.setInt(5, vots_cand);
+            preparedStmt.setInt(6, vots_blanc);
+            preparedStmt.setInt(7, vots_nuls);
+
+
+
+            // execute the preparedstatement
+            preparedStmt.execute();
+
+        }catch(Exception e){
+            System.out.println(e);
+        }
+
+    }
 
     // Función que coge la info de las candidaturas y la introduce en la BBDD
     public static void candidatures(String codi, String nomCurt, String nomLlarg, String codi_ac_prov, String codi_ac_ca, String codi_ac_nac, int any, Connection con) {
