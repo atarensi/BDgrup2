@@ -309,4 +309,41 @@ public class Leer {
             }
         }
     }
+    //Función para leer el archivo 08 y buscar los votos de provincias
+    public static void votsProvincies(Connection con){
+        int codi_cand;
+        int vots;
+        int candidats_obtinguts;
+        String prov_id;
+
+        BufferedReader bfLector = null;
+        try{
+            Path pathActual = Paths.get(("out"));
+            pathActual = pathActual.toAbsolutePath();
+
+            Path pathFitxer = Paths.get(pathActual.toString(), "08021904.DAT");
+
+            //objReader = new BufferedReader(new FileReader(pathFitxer.toString()));
+
+            bfLector = Files.newBufferedReader(pathFitxer, StandardCharsets.ISO_8859_1);
+            String strLinia;
+            while ((strLinia = bfLector.readLine()) != null){
+                prov_id = strLinia.substring(11,13);
+                codi_cand = Integer.parseInt(strLinia.substring(14,20));
+                vots = Integer.parseInt(strLinia.substring(20,28));;
+                candidats_obtinguts = Integer.parseInt(strLinia.substring(28,33));
+                Insert.votsProvincials(prov_id, codi_cand, vots, candidats_obtinguts, con);
+            }
+
+        }catch (IOException e){
+            e.printStackTrace();
+        }finally{
+            try{
+                bfLector.close();
+            }catch (IOException ex){
+                ex.printStackTrace();
+            }
+        }
+    }
+    
 }
