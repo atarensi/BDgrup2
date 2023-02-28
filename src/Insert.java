@@ -190,44 +190,33 @@ public class Insert {
 
     }
     
-    // Función para leer el archivo 04 y buscar las personas
-    public static void votos_municipales (Connection con) {
-        int any;
-        int mes;
-        String ine;
-        String codi_cand;
-        int vots;
-        BufferedReader bfLector = null;
+    // Función que coge la info de los votos municipales y la introduce en la BBDD
+    public static void votos_municipales(int any, int mes, String ine, String codi_cand, int vots, Connection con) {
+
         try {
 
-            Path pathActual = Paths.get(("out"));
-            pathActual = pathActual.toAbsolutePath();
+            Class.forName("com.mysql.cj.jdbc.Driver");
 
-            Path pathFitxer = Paths.get(pathActual.toString(), "02201904_MESA", "06021904.DAT");
+            Calendar calendar = Calendar.getInstance();
+            java.sql.Date startDate = new java.sql.Date(calendar.getTime().getTime());
+            String query = " INSERT INTO vots_candidatures_mun (eleccio_id,municipi_id,candidatura_id,vots)"
+                    + " values (?, ?, ?, ?)";
 
-            //objReader = new BufferedReader(new FileReader(pathFitxer.toString()));
-
-            bfLector = Files.newBufferedReader(pathFitxer, StandardCharsets.ISO_8859_1);
-            String strLinia;
-            while ((strLinia = bfLector.readLine()) != null) {
-                any = Integer.parseInt(strLinia.substring(2,6));
-                mes = Integer.parseInt(strLinia.substring(6,8));
-                ine = strLinia.substring(11,14);
-                codi_cand = strLinia.substring(16,22);
-                vots = Integer.parseInt(strLinia.substring(22,30));
-                Insert.votos_municipales(any, mes, ine, codi_cand, vots, con);
-            }
+            // create the mysql insert preparedstatement
+            PreparedStatement preparedStmt = con.prepareStatement(query);
+            preparedStmt.setInt(1, Select.elecciones(any, mes, con));
+            preparedStmt.setInt(2, Select.municipis(ine, con));
+            preparedStmt.setInt(3, Select.candidatura(codi_cand, con));
+            preparedStmt.setInt(4, vots);
 
 
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                if (bfLector != null)
-                    bfLector.close();
-            } catch (IOException ex) {
-                ex.printStackTrace();
-            }
+
+            // execute the preparedstatement
+            preparedStmt.execute();
+
+        }catch(Exception e){
+            System.out.println(e);
         }
+
     }
 }
