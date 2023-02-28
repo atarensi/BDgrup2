@@ -79,4 +79,55 @@ public class Select {
 
         return x;
     }
+    
+    // Método par hacer un Select e insertar la id de elecciones según el any y el mes
+    public static int eleccions_muni_eleid(int any, int mes, Connection con) {
+        int x = 0;
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            //SENTÈNCIA SELECT
+            // Busca ID de comunitat autonoma para introducirlo en la tabla Provincias
+            String query = "SELECT eleccio_id " +
+                    " FROM eleccions " +
+                    "WHERE any = ? AND mes = ?";
+            PreparedStatement preparedStmt = con.prepareStatement(query);
+
+            preparedStmt.setInt(1, any);
+            preparedStmt.setInt(2, mes);
+
+            ResultSet rs = preparedStmt.executeQuery();
+            if (rs.next()) {
+                x = rs.getInt("eleccio_id");
+            }
+        }
+        catch(Exception e){
+            System.out.println(e);}
+
+        return x;
+    }
+
+    // Método par hacer un Select e insertar la id de elecciones según el any y el mes
+    public static int eleccions_muni_muniid(String ine, Connection con) {
+        int x = 0;
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            //SENTÈNCIA SELECT
+            // Busca ID de comunitat autonoma para introducirlo en la tabla Provincias
+            String query = "SELECT municipi_id " +
+                    " FROM municipis " +
+                    "WHERE codi_ine = ?";
+            PreparedStatement preparedStmt = con.prepareStatement(query);
+
+            preparedStmt.setString(1, ine);
+
+            ResultSet rs = preparedStmt.executeQuery();
+            if (rs.next()) {
+                x = rs.getInt("municipi_id");
+            }
+        }
+        catch(Exception e){
+            System.out.println(e);}
+
+        return x;
+    }
 }
