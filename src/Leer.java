@@ -125,6 +125,53 @@ public class Leer {
             }
         }
     }
+    
+     // Función para leer el archivo 05 y buscar las elecciones municipales
+    public static void elecciones_municipales (Connection con) {
+        int any;
+        int mes;
+        String ine;
+        int num_taules;
+        int cens;
+        int vots_candidatures;
+        int vots_blanc;
+        int vots_nuls;
+        BufferedReader bfLector = null;
+        try {
+
+            Path pathActual = Paths.get(("out"));
+            pathActual = pathActual.toAbsolutePath();
+
+            Path pathFitxer = Paths.get(pathActual.toString(), "02201904_MESA", "03021904.DAT");
+
+            //objReader = new BufferedReader(new FileReader(pathFitxer.toString()));
+
+            bfLector = Files.newBufferedReader(pathFitxer, StandardCharsets.ISO_8859_1);
+            String strLinia;
+            while ((strLinia = bfLector.readLine()) != null) {
+                any = Integer.parseInt(strLinia.substring(2,6));
+                mes = Integer.parseInt(strLinia.substring(6,8));
+                ine = strLinia.substring(13,16);
+                num_taules = Integer.parseInt(strLinia.substring(136,141));
+                cens = Integer.parseInt(strLinia.substring(149,157));
+                vots_candidatures = Integer.parseInt(strLinia.substring(205,213));
+                vots_blanc = Integer.parseInt(strLinia.substring(189,197));
+                vots_nuls = Integer.parseInt(strLinia.substring(197,205));
+                Insert.elecciones_municipales(any, mes, ine, num_taules, cens, vots_candidatures, vots_blanc, vots_nuls, con);
+            }
+
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (bfLector != null)
+                    bfLector.close();
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        }
+    }
 
     // Función para leer el archivo 03 y buscar las candidaturas
     public static void candidatures (Connection con) {
