@@ -8,16 +8,16 @@ USE eleccions_generals_espanyoles;
 
 
 CREATE TABLE comunitats_autonomes (
-	comunitat_aut_id TINYINT UNSIGNED NOT NULL AUTO_INCREMENT,
-	nom			VARCHAR(45),
-	codi_ine		CHAR(2) NOT NULL,
+	comunitat_aut_id 	TINYINT UNSIGNED NOT NULL AUTO_INCREMENT,
+	nom					VARCHAR(45),
+	codi_ine			CHAR(2) NOT NULL,
 	CONSTRAINT pk_comunitats_autonomes PRIMARY KEY (comunitat_aut_id),
 	CONSTRAINT uk_com_aut_codi_ine UNIQUE (codi_ine)    
 );
 
 CREATE TABLE provincies (
 	provincia_id		TINYINT UNSIGNED NOT NULL AUTO_INCREMENT,
-	comunitat_aut_id	TINYINT UNSIGNED NOT NULL,	
+	comunitat_aut_id	TINYINT UNSIGNED NOT NULL,
 	nom				VARCHAR(45),
 	codi_ine		CHAR(2) NOT NULL,
 	num_escons		TINYINT UNSIGNED COMMENT "Numero d'escons que li pertoquen a aquella provincia",
@@ -33,7 +33,7 @@ CREATE TABLE municipis (
 	nom				VARCHAR(100),
 	codi_ine		CHAR(3) NOT NULL,
 	provincia_id	TINYINT UNSIGNED NOT NULL ,
-	districte		CHAR(2) COMMENT "Número de districte municipal , sinó el seu valor serà 99. Per exemple aquí municiís com Blanes el seu valor serà 99, però en ciutats com Barcelona hi haurà el número de districte.",
+	districte		CHAR(2), 
     INDEX idx_fk_municipis_provincies1 (provincia_id),
 	CONSTRAINT pk_municipis PRIMARY KEY (municipi_id),
 		CONSTRAINT fk_municipis_provincies FOREIGN KEY (provincia_id) 
@@ -44,9 +44,9 @@ CREATE TABLE municipis (
 CREATE TABLE eleccions (
 	eleccio_id	TINYINT UNSIGNED NOT NULL AUTO_INCREMENT,
     nom			VARCHAR(45),
-    data		DATE  NOT NULL,
-    any			YEAR AS (YEAR(data)) NOT NULL COMMENT "Any el qual s'han celebrat les eleccions",
-    mes			TINYINT AS (MONTH(data)) COMMENT "El mes que s'han celebrat les eleccions",
+    data		DATE NOT NULL,
+    any			YEAR GENERATED ALWAYS AS (YEAR(data)) NOT NULL COMMENT "Any el qual s'han celebrat les eleccions",
+    mes			TINYINT GENERATED ALWAYS AS (MONTH(data)) NOT NULL COMMENT "El mes que s'han celebrat les eleccions",
     CONSTRAINT pk_eleccions PRIMARY KEY (eleccio_id),
 	CONSTRAINT uk_eleccions_any_mes UNIQUE (any,mes), 
     CONSTRAINT uk_eleccions_data UNIQUE (data)
@@ -57,9 +57,9 @@ CREATE TABLE eleccions_municipis (
     municipi_id			SMALLINT UNSIGNED NOT NULL,
     num_meses			SMALLINT UNSIGNED,
     cens				INT UNSIGNED,
-    vots_emesos		???	INT AS (vots_candidatures_mun.vots) COMMENT "Número total de vots realitzats en el municipi",
-    vots_valids		???	INT AS (vots_candidatures + vots_nuls) COMMENT "Número de vots es que tindran en compte: vots a candidatures + vots nuls",
-    vots_candidatures	INT AS (vots_candidatures_ca.vots) COMMENT "Total de vots a les candidatures",
+    vots_emesos			INT UNSIGNED COMMENT "Número total de vots realitzats en el municipi",
+    vots_valids			INT UNSIGNED COMMENT "Número de vots es que tindran en compte: vots a candidatures + vots nuls",
+    vots_candidatures	INT UNSIGNED COMMENT "Total de vots a les candidatures",
     vots_blanc			INT UNSIGNED,
     vots_nuls			INT UNSIGNED,
     INDEX idx_fk_eleccions_municipis_eleccions (eleccio_id),
@@ -89,7 +89,7 @@ CREATE TABLE candidatures (
 );
 
 CREATE TABLE persones (
-    persona_id		INT UNSIGNED NOT NULL,
+	persona_id		INT UNSIGNED NOT NULL,
     nom				VARCHAR(30) ,
     cog1			VARCHAR(30),
     cog2			VARCHAR(30),
@@ -101,7 +101,7 @@ CREATE TABLE persones (
 );
 
 CREATE TABLE candidats (
-    candidat_id		BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
+	candidat_id		BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
     candidatura_id	INT UNSIGNED NOT NULL,
     persona_id		INT UNSIGNED,
     provincia_id	TINYINT UNSIGNED,
@@ -122,10 +122,10 @@ CREATE TABLE candidats (
 
 CREATE TABLE vots_candidatures_ca (
 	comunitat_autonoma_id	TINYINT UNSIGNED NOT NULL,
-	candidatura_id			INT UNSIGNED NOT NULL,
-	vots					INT UNSIGNED,
-	-- INDEX fk_candidats_provincies1_idx (candidatura_id),
-	-- INDEX fk_candidats_provincies1_idx (comunitat_autonoma_id),
+	candidatura_id		INT UNSIGNED NOT NULL,
+	vots				INT UNSIGNED,
+	INDEX fk_comunitats_autonomes_has_candidatures_candidatures1_idx (candidatura_id),
+	INDEX fk_comunitats_autonomes_has_candidatures_comunitats_autonom_idx (comunitat_autonoma_id),
 	CONSTRAINT pk_vots_candidatures_ca PRIMARY KEY (comunitat_autonoma_id,candidatura_id),
 	CONSTRAINT fk_comunitats_autonomes_has_candidatures_comunitats_autonomes1 FOREIGN KEY (comunitat_autonoma_id) 
 		REFERENCES comunitats_autonomes (comunitat_aut_id),
@@ -136,8 +136,8 @@ CREATE TABLE vots_candidatures_ca (
 CREATE TABLE vots_candidatures_prov (
 	provincia_id		TINYINT UNSIGNED NOT NULL,
 	candidatura_id		INT UNSIGNED NOT NULL,
-	vots				INT UNSIGNED,
-	candidats_obtinguts	SMALLINT UNSIGNED,
+	vots				INT UNSIGNED COMMENT "Número de vots obtinguts per la candidatura",
+	candidats_obtinguts	SMALLINT UNSIGNED COMMENT "Número de candidats obtinguts per la candidatura",
     INDEX fk_candidatures_provincies_candidatures1_idx (candidatura_id),
 	CONSTRAINT pk_vots_candidatures_prov PRIMARY KEY (provincia_id,candidatura_id),
 		CONSTRAINT fk_candidatures_provincies_provincies1 FOREIGN KEY (provincia_id) 
@@ -150,7 +150,7 @@ CREATE TABLE vots_candidatures_mun (
 	eleccio_id			TINYINT UNSIGNED NOT NULL,
 	municipi_id			SMALLINT UNSIGNED NOT NULL,
 	candidatura_id		INT UNSIGNED NOT NULL,
-	vots				INT UNSIGNED,
+	vots				INT UNSIGNED COMMENT "Número de vots obtinguts per la candidatura",
     INDEX fk_candidatures_municipis_candidatures1_idx (candidatura_id),
     INDEX fk_candidatures_municipis_eleccions_municipis1_idx (eleccio_id,municipi_id),
 	CONSTRAINT pk_vots_candidatures_mun PRIMARY KEY (eleccio_id,municipi_id,candidatura_id),
@@ -161,3 +161,4 @@ CREATE TABLE vots_candidatures_mun (
 );
 
 COMMIT;
+
