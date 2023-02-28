@@ -219,4 +219,31 @@ public class Insert {
         }
 
     }
+    //Función que coge la info de los votos provinciales y la introduce en la BBDD
+    public static void votsProvincials(String ine_provincia, int codi_cand, int vots, int candidats_obtinguts, Connection con) {
+        try {
+
+            Class.forName("com.mysql.cj.jdbc.Driver");
+
+            Calendar calendar = Calendar.getInstance();
+            java.sql.Date startDate = new java.sql.Date(calendar.getTime().getTime());
+            String query = " INSERT INTO vots_candidatures_prov (provincia_id,candidatura_id,vots,candidats_obtinguts)"
+                    + " values (?, ?, ?, ?)";
+
+            // create the mysql insert preparedstatement
+            PreparedStatement preparedStmt = con.prepareStatement(query);
+            preparedStmt.setInt(1, Select.provincies(ine_provincia, con));
+            preparedStmt.setInt(2, Select.candidatures(codi_cand, con));
+            preparedStmt.setInt(3, vots);
+            preparedStmt.setInt(4, candidats_obtinguts);
+
+
+
+            // execute the preparedstatement
+            preparedStmt.execute();
+
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
 }
