@@ -189,4 +189,45 @@ public class Insert {
         }
 
     }
+    
+    // Función para leer el archivo 04 y buscar las personas
+    public static void votos_municipales (Connection con) {
+        int any;
+        int mes;
+        String ine;
+        String codi_cand;
+        int vots;
+        BufferedReader bfLector = null;
+        try {
+
+            Path pathActual = Paths.get(("out"));
+            pathActual = pathActual.toAbsolutePath();
+
+            Path pathFitxer = Paths.get(pathActual.toString(), "02201904_MESA", "06021904.DAT");
+
+            //objReader = new BufferedReader(new FileReader(pathFitxer.toString()));
+
+            bfLector = Files.newBufferedReader(pathFitxer, StandardCharsets.ISO_8859_1);
+            String strLinia;
+            while ((strLinia = bfLector.readLine()) != null) {
+                any = Integer.parseInt(strLinia.substring(2,6));
+                mes = Integer.parseInt(strLinia.substring(6,8));
+                ine = strLinia.substring(11,14);
+                codi_cand = strLinia.substring(16,22);
+                vots = Integer.parseInt(strLinia.substring(22,30));
+                Insert.votos_municipales(any, mes, ine, codi_cand, vots, con);
+            }
+
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (bfLector != null)
+                    bfLector.close();
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        }
+    }
 }
