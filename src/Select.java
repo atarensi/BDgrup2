@@ -1,5 +1,4 @@
 import java.sql.*;
-import java.util.Calendar;
 
 public class Select {
 
@@ -56,7 +55,7 @@ public class Select {
 
     // Método para hacer un Select e insertar la id de eleccions según el any
 
-    public static int candidatures(int any, Connection con) {
+    public static int elecciones(int any, Connection con) {
         int x = 0;
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -79,9 +78,9 @@ public class Select {
 
         return x;
     }
-    
+
     // Método par hacer un Select e insertar la id de elecciones según el any y el mes
-    public static int eleccions_muni_eleid(int any, int mes, Connection con) {
+    public static int elecciones(int any, int mes, Connection con) {
         int x = 0;
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -107,7 +106,7 @@ public class Select {
     }
 
     // Método par hacer un Select e insertar la id de elecciones según el any y el mes
-    public static int eleccions_muni_muniid(String ine, Connection con) {
+    public static int municipis(String ine, Connection con) {
         int x = 0;
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -130,4 +129,30 @@ public class Select {
 
         return x;
     }
+
+    // Método par hacer un Select e insertar la id de candidaturas según el codi_candidatura
+    public static int candidatura(String codi_candidatura, Connection con) {
+        int x = 0;
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            //SENTÈNCIA SELECT
+            // Busca ID de comunitat autonoma para introducirlo en la tabla Provincias
+            String query = "SELECT candidatura_id " +
+                    " FROM candidatures " +
+                    "WHERE codi_candidatura = ?";
+            PreparedStatement preparedStmt = con.prepareStatement(query);
+
+            preparedStmt.setString(1, codi_candidatura);
+
+            ResultSet rs = preparedStmt.executeQuery();
+            if (rs.next()) {
+                x = rs.getInt("candidatura_id");
+            }
+        }
+        catch(Exception e){
+            System.out.println(e);}
+
+        return x;
+    }
+
 }
