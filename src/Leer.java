@@ -126,7 +126,7 @@ public class Leer {
         }
     }
     
-     // Función para leer el archivo 05 y buscar las elecciones municipales
+     // Función para leer el archivo 03 y buscar las elecciones municipales
     public static void elecciones_municipales (Connection con) {
         int any;
         int mes;
@@ -269,7 +269,7 @@ public class Leer {
         }
     }
     
-    // Función para leer el archivo 04 y buscar las personas
+    // Función para leer el archivo 06 y buscar las personas
     public static void votos_municipales (Connection con) {
         int any;
         int mes;
