@@ -12,6 +12,7 @@ public class ProgramaPrincipal {
         ImportEleccionesMunicipales();
         ImportCandidaturas();
         ImportPersonas();
+        ImportVosotsMunicipales();
 
         con.close();
     }
@@ -45,5 +46,10 @@ public class ProgramaPrincipal {
         // Importación de los datos de la tabla Personas
     public static void ImportPersonas() {
         Leer.personas(con);
+    }
+    
+    // Importación de los datos de la tabla Vots_candidatures_Municipals
+    public static void ImportVotosMunicipales() {
+        Leer.votos_municipales(con);
     }
 }
