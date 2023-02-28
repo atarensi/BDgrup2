@@ -1,3 +1,4 @@
+
 CREATE TABLE provincies
 	num_escons		TINYINT UNSIGNED COMMENT "Numero d'escons que li pertoquen a aquella provincia",
 
