@@ -117,8 +117,15 @@ SELECT p.nom nom_provincies, vc.vots <br>
 &emsp;&emsp; INNER JOIN provincies p ON p.provincia_id = vc.provincia_id <br>
 WHERE vc.vots = (SELECT MAX(vots) <br>
 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; FROM vots_candidatures_prov); 
+
+``4- Mostra les id de les eleccions de l'any 2022``
+SELECT eleccio_id AS id_eleccio, vots_emesos AS Vots_emesos <br>
+&emsp;&emsp; FROM eleccions_municipis <br>
+WHERE eleccio_id IN ( SELECT eleccio_id <br>
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; FROM eleccions <br>
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; WHERE YEAR(data) = 2022
 		
-``4- Mostra les provincies i comunitats que tenen candidats Suplents``
+``5- Mostra les provincies i comunitats que tenen candidats Suplents``
 
 SELECT p.provincia_id, p.nom AS nom_provincia, c.nom AS nom_comunitat <br>
 &emsp;&emsp; FROM provincies p  <br>
