@@ -1,4 +1,5 @@
-Primero hemos creado la Base de Datos y hemos hecho una réplica papra hacer pruebas de código, comprobar el funcionamiento de este y los datos introducidos.
+
+Primero hemos creado la ``Base de Datos`` y hemos hecho una réplica papra hacer pruebas de código, comprobar el funcionamiento de este y los datos introducidos.
 
 Hemos empezado por inserir los datos de las tablas en el orden estipulado en el documento, creando sus respectivas funciones para leer el archivo, inserir los
 datos del archivo en la Base de Datos, y hacer los Selects necesaros de las tablas ya inseridas.
