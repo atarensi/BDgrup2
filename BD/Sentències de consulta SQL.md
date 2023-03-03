@@ -22,12 +22,11 @@ SELECT CONCAT(nom, ' ',cog1 , ' ' ,cog2) AS Nom_complet <br>
 WHERE sexe='F'; 
 <br>
 
-``4- Recompte de vots al mes maig``
+``4- Recompte de vots en el mes actual``
 
 SELECT COUNT(eleccions_id) as Vots <br>
 &emsp;&emsp; FROM eleccions <br>
-WHERE mes = 5; 
-<br>
+WHERE MONTH(data) = MONTH(NOW()); 
 
 ``5- Mostra la quantitat de candidats per cada provincia``
 
