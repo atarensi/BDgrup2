@@ -1,8 +1,11 @@
 <em>Aquesta carpeta conté l'estructura/modificacions i els selects de la Base de dades</em>
 
 ## BD_eleccions_v1.sql:
-Com que els índexs ens donaven errors em decidid no afegir-los a l'estructura
+Com que els índexs ens donaven errors em decidid no afegir-los a l'estructura <br>
 
+__Taula eleccions__ <br>
+Per que el anys i els mesos es generin automaticament a la taula he fet que agafin el any/mes de la columna data
+	mes				TINYINT GENERATED ALWAYS AS (MONTH(data)) NOT
 ## BD_eleccions_v2.sql:
 
 __Alterem la taula de provincies__ 
