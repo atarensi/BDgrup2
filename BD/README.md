@@ -5,7 +5,7 @@ Com que els índexs ens donaven errors em decidid no afegir-los a l'estructura <
 
 __Taula eleccions__ <br>
 Per que el anys i els mesos es generin automaticament a la taula he fet que agafin el any/mes de la columna data
-	mes				TINYINT GENERATED ALWAYS AS (MONTH(data)) NOT
+
 ## BD_eleccions_v2.sql:
 
 __Alterem la taula de provincies__ 
