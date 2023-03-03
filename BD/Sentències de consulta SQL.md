@@ -1,11 +1,10 @@
 ### Categoria 1 - Consultes simples:
 
-``1- Mostra els candidats que tenen mes de 25 anys``
+``1- Mostra les persones que el seu dni acaba amb z``
 
-SELECT nom AS Nom, cog1 AS Cognom, TIMESTAMPDIFF(YEAR,data_naixement,CURDATE()) AS Edat
+SELECT nom AS Nom, cog1 AS Cognom, dni
 FROM persones
-WHERE TIMESTAMPDIFF(YEAR,data_naixement,CURDATE()) >= 25;
-
+WHERE dni RLIKE '.[Z]';
 
 ``2- Mostra tota l'informació de les comunitats autonomes que contenen en el seu nom Cat``
 
@@ -20,7 +19,7 @@ FROM persones
 WHERE sexe='F';
 
 
-``4- Recompte de vots en el mes actual``
+``4- El nombre de les eleccions que hi ha el mes 11``
 
 SELECT COUNT(eleccio_id) as Numero_de_eleccions
 FROM eleccions
