@@ -121,7 +121,7 @@ SELECT eleccio_id AS id_eleccio, vots_emesos AS Vots_emesos <br>
 &emsp;&emsp; FROM eleccions_municipis <br>
 WHERE eleccio_id IN ( SELECT eleccio_id <br>
 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; FROM eleccions <br>
-&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; WHERE YEAR(data) = 2022
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; WHERE YEAR(data) = 2019
 		
 ``5- Mostra les provincies i comunitats que tenen candidats Suplents``
 
