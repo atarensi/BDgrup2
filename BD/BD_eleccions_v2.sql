@@ -14,3 +14,5 @@ ALTER TABLE eleccions_municipis
     	DROP PRIMARY KEY,
 	ADD CONSTRAINT pk_eleccions_municipis PRIMARY KEY (eleccio_id,municipi_id,num_meses,cens),
     	DROP CONSTRAINT uk_eleccions_municipis;
+	
+INSERT INTO eleccions VALUES('1','Eleccions generals espanya 2020','2019-11-24','2019','11');
