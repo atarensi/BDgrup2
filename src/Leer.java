@@ -17,24 +17,24 @@ public class Leer {
             Path pathActual = Paths.get(("out"));
             pathActual = pathActual.toAbsolutePath();
 
-        Path pathFitxer = Paths.get(pathActual.toString(), "02201904_MESA", "07021904.DAT");
+            Path pathFitxer = Paths.get(pathActual.toString(),"07021904.DAT");
 
-        //objReader = new BufferedReader(new FileReader(pathFitxer.toString()));
+            //objReader = new BufferedReader(new FileReader(pathFitxer.toString()));
 
-        bfLector = Files.newBufferedReader(pathFitxer, StandardCharsets.ISO_8859_1);
-        String strLinia;
-        while ((strLinia = bfLector.readLine()) != null) {
-            nom = strLinia.substring(14,64).trim();
-            ine = strLinia.substring(11,13);
-            ca = strLinia.substring(9,11);
-            if (ine.equals("99") && !nom.equalsIgnoreCase("Total Nacional")) Insert.comunitatsAutonomes(nom, ca, con);
+            bfLector = Files.newBufferedReader(pathFitxer, StandardCharsets.ISO_8859_1);
+            String strLinia;
+            while ((strLinia = bfLector.readLine()) != null) {
+                nom = strLinia.substring(14,64).trim();
+                ine = strLinia.substring(11,13);
+                ca = strLinia.substring(9,11);
+                if (ine.equals("99") && !nom.equalsIgnoreCase("Total Nacional")) Insert.comunitatsAutonomes(nom, ca, con);
 
-        }
+            }
 
 
-    } catch (IOException e) {
-        e.printStackTrace();
-    } finally {
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
             try {
                 if (bfLector != null)
                     bfLector.close();
@@ -47,7 +47,6 @@ public class Leer {
 
     // Funcion para leer el archivo 07  y buscar las provincias
     public static void provincies (Connection con) {
-        int id;
         String nom;
         String ca;
         String ine;
@@ -58,7 +57,7 @@ public class Leer {
             Path pathActual = Paths.get(("out"));
             pathActual = pathActual.toAbsolutePath();
 
-            Path pathFitxer = Paths.get(pathActual.toString(), "02201904_MESA", "07021904.DAT");
+            Path pathFitxer = Paths.get(pathActual.toString(),"07021904.DAT");
 
             //objReader = new BufferedReader(new FileReader(pathFitxer.toString()));
 
@@ -69,7 +68,7 @@ public class Leer {
                 ca = strLinia.substring(9,11);
                 ine = strLinia.substring(11,13);
                 num_escons = Integer.parseInt(strLinia.substring(149,155));
-                if (!ine.equals("99")) Insert.provincies(nom, ine, ca, num_escons, con);
+                if (!(ine.equals("99")))Insert.provincies(nom, ine, ca, num_escons, con);
 
             }
 
@@ -92,14 +91,13 @@ public class Leer {
         String codi;
         String ine;
         String ine_prov;
-        int num_escons;
         BufferedReader bfLector = null;
         try {
 
             Path pathActual = Paths.get(("out"));
             pathActual = pathActual.toAbsolutePath();
 
-            Path pathFitxer = Paths.get(pathActual.toString(), "02201904_MESA", "05021904.DAT");
+            Path pathFitxer = Paths.get(pathActual.toString(), "05021904.DAT");
 
             //objReader = new BufferedReader(new FileReader(pathFitxer.toString()));
 
@@ -125,8 +123,6 @@ public class Leer {
             }
         }
     }
-    
-     // Función para leer el archivo 03 y buscar las elecciones municipales
     public static void elecciones_municipales (Connection con) {
         int any;
         int mes;
@@ -142,7 +138,7 @@ public class Leer {
             Path pathActual = Paths.get(("out"));
             pathActual = pathActual.toAbsolutePath();
 
-            Path pathFitxer = Paths.get(pathActual.toString(), "02201904_MESA", "03021904.DAT");
+            Path pathFitxer = Paths.get(pathActual.toString(), "05021904.DAT");
 
             //objReader = new BufferedReader(new FileReader(pathFitxer.toString()));
 
@@ -172,8 +168,6 @@ public class Leer {
             }
         }
     }
-
-    // Función para leer el archivo 03 y buscar las candidaturas
     public static void candidatures (Connection con) {
         String codi;
         String nomCurt;
@@ -182,27 +176,26 @@ public class Leer {
         String codi_ac_ca;
         String codi_ac_nac;
         int any;
-        int num_escons;
         BufferedReader bfLector = null;
         try {
 
             Path pathActual = Paths.get(("out"));
             pathActual = pathActual.toAbsolutePath();
 
-            Path pathFitxer = Paths.get(pathActual.toString(), "02201904_MESA", "03021904.DAT");
+            Path pathFitxer = Paths.get(pathActual.toString(), "03021904.DAT");
 
             //objReader = new BufferedReader(new FileReader(pathFitxer.toString()));
 
             bfLector = Files.newBufferedReader(pathFitxer, StandardCharsets.ISO_8859_1);
             String strLinia;
             while ((strLinia = bfLector.readLine()) != null) {
-                codi = strLinia.substring(8,14);
-                nomCurt = strLinia.substring(14,64);
-                nomLlarg = strLinia.substring(64,214);
-                codi_ac_prov = strLinia.substring(214,220);
-                codi_ac_ca = strLinia.substring(220,226);
-                codi_ac_nac = strLinia.substring(226,232);
-                any = Integer.parseInt(strLinia.substring(2,6));
+                codi = strLinia.substring(8, 14);
+                nomCurt = strLinia.substring(14, 64);
+                nomLlarg = strLinia.substring(64, 214);
+                codi_ac_prov = strLinia.substring(214, 220);
+                codi_ac_ca = strLinia.substring(220, 226);
+                codi_ac_nac = strLinia.substring(226, 232);
+                any = Integer.parseInt(strLinia.substring(2, 6));
                 Insert.candidatures(codi, nomCurt, nomLlarg, codi_ac_prov, codi_ac_ca, codi_ac_nac, any, con);
             }
 
@@ -218,8 +211,6 @@ public class Leer {
             }
         }
     }
-    
-        // Función para leer el archivo 04 y buscar las personas
     public static void personas (Connection con) {
         String nom;
         String cog1;
@@ -230,14 +221,13 @@ public class Leer {
         String mes;
         String any;
         String dni;
-        int num_escons;
         BufferedReader bfLector = null;
         try {
 
             Path pathActual = Paths.get(("out"));
             pathActual = pathActual.toAbsolutePath();
 
-            Path pathFitxer = Paths.get(pathActual.toString(), "02201904_MESA", "04021904.DAT");
+            Path pathFitxer = Paths.get(pathActual.toString(), "04021904.DAT");
 
             //objReader = new BufferedReader(new FileReader(pathFitxer.toString()));
 
@@ -251,9 +241,17 @@ public class Leer {
                 dia = strLinia.substring(101,103);
                 mes = strLinia.substring(103,105);
                 any = strLinia.substring(105,109);
-                dob = any + "-" + mes + "-" + dia;
-                dni = strLinia.substring(109,119);
-                Insert.personas(nom, cog1, cog2, sexe, dob, dni, con);
+                if (dia.equals("00") || mes.equals("00") || any.equals("0000")) {
+                    dob = null;
+                }
+                else {
+                    dob = any + "-" + mes + "-" + dia;
+                }
+                if (strLinia.substring(109,119).equals("          ")) {
+                    dni = null;
+                }
+                else dni = strLinia.substring(109,119);
+                Insert.personas(nom, cog1, cog2, sexe, dob , dni, con);
             }
 
 
@@ -268,7 +266,54 @@ public class Leer {
             }
         }
     }
-    
+        public static void candidats(Connection con) {
+            int num;
+            String tipus;
+            String dni;
+            String nom;
+            String cog1;
+            String cog2;
+            int ine;
+            int cod_can;
+
+            BufferedReader bfLector = null;
+            try {
+
+                Path pathActual = Paths.get(("out"));
+                pathActual = pathActual.toAbsolutePath();
+
+                Path pathFitxer = Paths.get(pathActual.toString(), "04021904.DAT");
+
+                //objReader = new BufferedReader(new FileReader(pathFitxer.toString()));
+
+                bfLector = Files.newBufferedReader(pathFitxer, StandardCharsets.ISO_8859_1);
+                String strLinia;
+                while ((strLinia = bfLector.readLine()) != null) {
+
+                    ine = Integer.parseInt(strLinia.substring(9, 11));
+                    cod_can = Integer.parseInt(strLinia.substring(15, 21));
+                    num = Integer.parseInt(strLinia.substring(21, 24));
+                    tipus = strLinia.substring(24, 25);
+                    nom = strLinia.substring(25, 50);
+                    cog1 = strLinia.substring(50, 75);
+                    cog2 = strLinia.substring(75, 100);
+                    if (strLinia.substring(109, 119).equals("          ")) {
+                        dni = "null";
+                    } else dni = strLinia.substring(109, 119);
+                    Insert.candidats(ine, cod_can, tipus, num, dni, nom, cog1, cog2, con);
+                }
+            }
+            catch (IOException e) {
+                e.printStackTrace();
+            } finally {
+                try {
+                    if (bfLector != null)
+                        bfLector.close();
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
+            }
+        }
     // Función para leer el archivo 06 y buscar las personas
     public static void votos_municipales (Connection con) {
         int any;
@@ -282,7 +327,7 @@ public class Leer {
             Path pathActual = Paths.get(("out"));
             pathActual = pathActual.toAbsolutePath();
 
-            Path pathFitxer = Paths.get(pathActual.toString(), "02201904_MESA", "06021904.DAT");
+            Path pathFitxer = Paths.get(pathActual.toString(), "06021904.DAT");
 
             //objReader = new BufferedReader(new FileReader(pathFitxer.toString()));
 
@@ -309,12 +354,48 @@ public class Leer {
             }
         }
     }
-    //Función para leer el archivo 08 y buscar los votos de provincias
+
+    // Función para leer el archivo 08 y buscar las personas
+    public static void votos_ca (Connection con) {
+        String ine;
+        String codi_cand;
+        int vots;
+        BufferedReader bfLector = null;
+        try {
+
+            Path pathActual = Paths.get(("out"));
+            pathActual = pathActual.toAbsolutePath();
+
+            Path pathFitxer = Paths.get(pathActual.toString(), "08021904.DAT");
+
+            //objReader = new BufferedReader(new FileReader(pathFitxer.toString()));
+
+            bfLector = Files.newBufferedReader(pathFitxer, StandardCharsets.ISO_8859_1);
+            String strLinia;
+            while ((strLinia = bfLector.readLine()) != null) {
+                ine = strLinia.substring(9,11);
+                codi_cand = strLinia.substring(14,20);
+                vots = Integer.parseInt(strLinia.substring(20,28));
+                if (!(ine.equals("99")))Insert.votos_ca(ine, codi_cand, vots, con);
+            }
+
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (bfLector != null)
+                    bfLector.close();
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        }
+    }
     public static void votsProvincies(Connection con){
-        int codi_cand;
+        String codi_cand;
         int vots;
         int candidats_obtinguts;
-        String prov_id;
+        int prov_id;
 
         BufferedReader bfLector = null;
         try{
@@ -328,11 +409,11 @@ public class Leer {
             bfLector = Files.newBufferedReader(pathFitxer, StandardCharsets.ISO_8859_1);
             String strLinia;
             while ((strLinia = bfLector.readLine()) != null){
-                prov_id = strLinia.substring(11,13);
-                codi_cand = Integer.parseInt(strLinia.substring(14,20));
+                prov_id = Integer.parseInt(strLinia.substring(11,13));
+                codi_cand = strLinia.substring(14,20);
                 vots = Integer.parseInt(strLinia.substring(20,28));;
                 candidats_obtinguts = Integer.parseInt(strLinia.substring(28,33));
-                Insert.votsProvincials(prov_id, codi_cand, vots, candidats_obtinguts, con);
+                if (!(prov_id == 99)) Insert.votsProvincials(prov_id, codi_cand, vots, candidats_obtinguts, con);
             }
 
         }catch (IOException e){
@@ -345,5 +426,4 @@ public class Leer {
             }
         }
     }
-    
 }
