@@ -82,12 +82,11 @@ WHERE c.tipus = 'S';
 
 `` 5- Cantidad de municipios que son de Catalunya``
 
-SELECT m.nom <br>
-&emsp;&emsp; FROM municipis m <br>
-&emsp;&emsp; INNER JOIN provincies p ON p.provincia_id = m.provincia_id <br>
-&emsp;&emsp; INNER JOIN comunitats_autonomes ca ON ca.comunitat_aut_id = p.comunitat_aut_id <br>
-WHERE ca.nom = 'Catalunya'; 
-<br>
+SELECT m.nom
+FROM municipis m
+INNER JOIN provincies p ON p.provincia_id = m.provincia_id
+INNER JOIN comunitats_autonomes ca ON ca.comunitat_aut_id = p.comunitat_aut_id
+WHERE ca.nom = 'Cataluña';
 
 ### Categoria 3 - Subconsultes:
 ``1- Mostra les persones que han sigut candidates mes de 2 vegades``
