@@ -125,7 +125,7 @@ WHERE p.provincia_id = (SELECT c.provincia_id
 
 ### Categoria 4 - Recursivitat:
 
-``Mostrara l'informació de municipis de tot aquell que tingui el codi_ine entre el 5 i el 10``
+``Mostrara l'informació de municipis de tot aquell que tingui el codi_ine entre el 2 i el 7``
 
 WITH RECURSIVE codi (n) AS (
 SELECT 2
