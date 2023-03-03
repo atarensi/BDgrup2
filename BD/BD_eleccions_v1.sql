@@ -29,11 +29,11 @@ CREATE TABLE provincies (
 );
 
 CREATE TABLE municipis (
-	municipi_id		SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT,
-	nom				VARCHAR(100),
-	codi_ine		CHAR(3) NOT NULL,
-	provincia_id	TINYINT UNSIGNED NOT NULL ,
-	districte		CHAR(2), 
+	municipi_id			SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT,
+	nom					VARCHAR(100),
+	codi_ine			CHAR(3) NOT NULL,
+	provincia_id		TINYINT UNSIGNED NOT NULL ,
+	districte			CHAR(2), 
     INDEX idx_fk_municipis_provincies1 (provincia_id),
 	CONSTRAINT pk_municipis PRIMARY KEY (municipi_id),
 		CONSTRAINT fk_municipis_provincies FOREIGN KEY (provincia_id) 
