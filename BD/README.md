@@ -13,9 +13,8 @@ __Alterem la taula de provincies__
   
 __Alterem la taula de municipis__ 
 1. codi_ine traiem NOT NULL
-2. Crear noves restriccións UNIQUE perque xxxx
+2. Crear noves restriccións UNIQUE
 
 
 __Alterem la taula d'eleccions municipis__
-1. ADD CONSTRAINT pk_eleccions_municipis PRIMARY KEY (eleccio_id,municipi_id,num_meses,cens)
-2. DROP CONSTRAINT uk_eleccions_municipis;
+1. Modifiquem la PRIMARY KEY perquè inclogui eleccio_id, municipi_id, num_meses i cens
