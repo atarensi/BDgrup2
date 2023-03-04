@@ -91,6 +91,7 @@ public class Leer {
         String codi;
         String ine;
         String ine_prov;
+        String codi_districte;
         BufferedReader bfLector = null;
         try {
 
@@ -127,6 +128,8 @@ public class Leer {
         int any;
         int mes;
         String ine;
+        String ine_prov;
+        String codi_districte;
         int num_taules;
         int cens;
         int vots_candidatures;
@@ -147,13 +150,15 @@ public class Leer {
             while ((strLinia = bfLector.readLine()) != null) {
                 any = Integer.parseInt(strLinia.substring(2,6));
                 mes = Integer.parseInt(strLinia.substring(6,8));
+                ine_prov = strLinia.substring(11,13);
                 ine = strLinia.substring(13,16);
+                codi_districte = strLinia.substring(16,18);
                 num_taules = Integer.parseInt(strLinia.substring(136,141));
                 cens = Integer.parseInt(strLinia.substring(149,157));
                 vots_candidatures = Integer.parseInt(strLinia.substring(205,213));
                 vots_blanc = Integer.parseInt(strLinia.substring(189,197));
                 vots_nuls = Integer.parseInt(strLinia.substring(197,205));
-                Insert.elecciones_municipales(any, mes, ine, num_taules, cens, vots_candidatures, vots_blanc, vots_nuls, con);
+                Insert.elecciones_municipales(any, mes,ine_prov, ine, codi_districte, num_taules, cens, vots_candidatures, vots_blanc, vots_nuls, con);
             }
 
 
@@ -266,59 +271,61 @@ public class Leer {
             }
         }
     }
-        public static void candidats(Connection con) {
-            int num;
-            String tipus;
-            String dni;
-            String nom;
-            String cog1;
-            String cog2;
-            int ine;
-            int cod_can;
+    public static void candidats(Connection con) {
+        int num;
+        String tipus;
+        String dni;
+        String nom;
+        String cog1;
+        String cog2;
+        int ine;
+        int cod_can;
 
-            BufferedReader bfLector = null;
-            try {
+        BufferedReader bfLector = null;
+        try {
 
-                Path pathActual = Paths.get(("out"));
-                pathActual = pathActual.toAbsolutePath();
+            Path pathActual = Paths.get(("out"));
+            pathActual = pathActual.toAbsolutePath();
 
-                Path pathFitxer = Paths.get(pathActual.toString(), "04021904.DAT");
+            Path pathFitxer = Paths.get(pathActual.toString(), "04021904.DAT");
 
-                //objReader = new BufferedReader(new FileReader(pathFitxer.toString()));
+            //objReader = new BufferedReader(new FileReader(pathFitxer.toString()));
 
-                bfLector = Files.newBufferedReader(pathFitxer, StandardCharsets.ISO_8859_1);
-                String strLinia;
-                while ((strLinia = bfLector.readLine()) != null) {
+            bfLector = Files.newBufferedReader(pathFitxer, StandardCharsets.ISO_8859_1);
+            String strLinia;
+            while ((strLinia = bfLector.readLine()) != null) {
 
-                    ine = Integer.parseInt(strLinia.substring(9, 11));
-                    cod_can = Integer.parseInt(strLinia.substring(15, 21));
-                    num = Integer.parseInt(strLinia.substring(21, 24));
-                    tipus = strLinia.substring(24, 25);
-                    nom = strLinia.substring(25, 50);
-                    cog1 = strLinia.substring(50, 75);
-                    cog2 = strLinia.substring(75, 100);
-                    if (strLinia.substring(109, 119).equals("          ")) {
-                        dni = "null";
-                    } else dni = strLinia.substring(109, 119);
-                    Insert.candidats(ine, cod_can, tipus, num, dni, nom, cog1, cog2, con);
-                }
-            }
-            catch (IOException e) {
-                e.printStackTrace();
-            } finally {
-                try {
-                    if (bfLector != null)
-                        bfLector.close();
-                } catch (IOException ex) {
-                    ex.printStackTrace();
-                }
+                ine = Integer.parseInt(strLinia.substring(9, 11));
+                cod_can = Integer.parseInt(strLinia.substring(15, 21));
+                num = Integer.parseInt(strLinia.substring(21, 24));
+                tipus = strLinia.substring(24, 25);
+                nom = strLinia.substring(25, 50);
+                cog1 = strLinia.substring(50, 75);
+                cog2 = strLinia.substring(75, 100);
+                if (strLinia.substring(109, 119).equals("          ")) {
+                    dni = "null";
+                } else dni = strLinia.substring(109, 119);
+                Insert.candidats(ine, cod_can, tipus, num, dni, nom, cog1, cog2, con);
             }
         }
+        catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (bfLector != null)
+                    bfLector.close();
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        }
+    }
     // Función para leer el archivo 06 y buscar las personas
     public static void votos_municipales (Connection con) {
         int any;
         int mes;
+        String codi_prov;
         String ine;
+        String codi_dis;
         String codi_cand;
         int vots;
         BufferedReader bfLector = null;
@@ -336,10 +343,12 @@ public class Leer {
             while ((strLinia = bfLector.readLine()) != null) {
                 any = Integer.parseInt(strLinia.substring(2,6));
                 mes = Integer.parseInt(strLinia.substring(6,8));
+                codi_prov = strLinia.substring(9,11);
                 ine = strLinia.substring(11,14);
+                codi_dis = strLinia.substring(14,16);
                 codi_cand = strLinia.substring(16,22);
                 vots = Integer.parseInt(strLinia.substring(22,30));
-                Insert.votos_municipales(any, mes, ine, codi_cand, vots, con);
+                Insert.votos_municipales(any, mes,codi_prov, ine,codi_dis,codi_cand ,vots, con);
             }
 
 
