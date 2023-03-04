@@ -1,5 +1,3 @@
-BEGIN;
-
 DROP DATABASE IF EXISTS eleccions_generals_espanyoles;
 
 CREATE DATABASE eleccions_generals_espanyoles;
@@ -38,7 +36,7 @@ CREATE TABLE municipis (
 	CONSTRAINT pk_municipis PRIMARY KEY (municipi_id),
 		CONSTRAINT fk_municipis_provincies FOREIGN KEY (provincia_id) 
 			REFERENCES provincies (provincia_id),
-	CONSTRAINT uk_municipis_codi_ine UNIQUE (codi_ine)
+	CONSTRAINT uk_municipis_codi_ine UNIQUE (codi_ine,provincia_id)
 );
 
 CREATE TABLE eleccions (
@@ -68,8 +66,7 @@ CREATE TABLE eleccions_municipis (
 		CONSTRAINT fk_eleccions_municipis_municipis FOREIGN KEY (municipi_id) 
 			REFERENCES municipis (municipi_id),
         CONSTRAINT fk_eleccions_municipis_eleccions FOREIGN KEY (eleccio_id) 
-			REFERENCES eleccions (eleccio_id),
-	CONSTRAINT uk_eleccions_municipis UNIQUE (eleccio_id)
+			REFERENCES eleccions (eleccio_id)
 );
 
 CREATE TABLE candidatures (
@@ -89,7 +86,7 @@ CREATE TABLE candidatures (
 );
 
 CREATE TABLE persones (
-	persona_id			INT UNSIGNED NOT NULL,
+	persona_id			INT UNSIGNED AUTO_INCREMENT,
     nom					VARCHAR(30) ,
     cog1				VARCHAR(30),
     cog2				VARCHAR(30),
@@ -159,6 +156,4 @@ CREATE TABLE vots_candidatures_mun (
 		CONSTRAINT fk_candidatures_municipis_eleccions_municipis1 FOREIGN KEY (eleccio_id,municipi_id) 
 			REFERENCES eleccions_municipis (eleccio_id,municipi_id)
 );
-
-COMMIT;
 
