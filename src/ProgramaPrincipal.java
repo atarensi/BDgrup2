@@ -7,26 +7,26 @@ public class ProgramaPrincipal {
 
     public static void main(String[] args) throws SQLException {
         con = DriverManager.getConnection("jdbc:mysql://192.168.56.103/eleccions_generals_espanyoles", "perepi", "pastanaga");
-        ImportarComunitatsAutonomes();//@todo be
-        System.out.println("Comunitats Autonomes importades");
-        ImportProvincies();//@todo be
-        System.out.println("Provincies importades");
-        ImportMunicipis(); //@todo be
-        System.out.println("Municipis importats");
-        ImportEleccionesMunicipales(); //@todo malament
-        System.out.println("Elecciones municipales importades");
-        ImportarCandidatures(); //@todo be
-        System.out.println("Candidatures importades");
-        ImportPersonas(); //@todo be
-        System.out.println("Personas importades");
-        ImportarCandidats(); //@todo be
-        System.out.println("Candidats importats");
-        ImportVotosMunicipales(); //@todo malament
+        //ImportarComunitatsAutonomes();//todo be
+        //System.out.println("Comunitats Autonomes importades");
+        //ImportProvincies();//todo be
+        //System.out.println("Provincies importades");
+        //ImportMunicipis();//todo be
+        //System.out.println("Municipis importats");
+        //ImportEleccionesMunicipales(); //@todo be
+        //System.out.println("Elecciones municipales importades");
+        //ImportarCandidatures();//todo be
+        //System.out.println("Candidatures importades");
+        //ImportPersonas();//todo be
+        //System.out.println("Personas importades");
+        //ImportarCandidats();//todo be
+        //System.out.println("Candidats importats");
+        ImportVotosMunicipales(); //@todo be
         System.out.println("Votos municipales importats");
-        ImportVotosCA(); //@todo malament
-        System.out.println("Votos CA importats");
-        ImportVotsProvincial(); //@todo be
-        System.out.println("Vots provincial importats");
+        //ImportVotosCA(); //@todo malament hi ha duplicats i no ens deixa acabar la importació
+        //System.out.println("Votos CA importats");
+        //ImportVotsProvincial();//todo be
+        //System.out.println("Vots provincial importats");
         con.close();
     }
 
