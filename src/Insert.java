@@ -74,7 +74,7 @@ public class Insert {
             // create the mysql insert preparedstatement
             PreparedStatement preparedStmt = con.prepareStatement(query);
             preparedStmt.setString(1, nom);
-            preparedStmt.setString (2, ine);
+            preparedStmt.setString (2, ine_prov + ine + codi);
             preparedStmt.setInt (3, Select.municipis(con, ine_prov));
             preparedStmt.setString(4, codi);
 
@@ -89,7 +89,7 @@ public class Insert {
 
     }
     // Función que coge la info de las elecciones municipales y la introduce en la BBDD
-    public static void elecciones_municipales(int any, int mes,String ine, int num_talues, int cens, int vots_cand, int vots_blanc, int vots_nuls, Connection con) {
+    public static void elecciones_municipales(int any, int mes,String ine_prov,String ine,String codi_dist, int num_talues, int cens, int vots_cand, int vots_blanc, int vots_nuls, Connection con) {
 
         try {
 
@@ -104,7 +104,7 @@ public class Insert {
             // create the mysql insert preparedstatement
             PreparedStatement preparedStmt = con.prepareStatement(query);
             preparedStmt.setInt(1, Select.elecciones(any, mes, con));
-            preparedStmt.setInt (2, Select.municipis(ine, con));
+            preparedStmt.setInt (2, Select.municipis(ine_prov + ine + codi_dist, con));
             preparedStmt.setInt (3, num_talues);
             preparedStmt.setInt(4, cens);
             preparedStmt.setInt(5, vots_cand);
@@ -212,8 +212,7 @@ public class Insert {
         }
 
     }
-    // Función que coge la info de los votos municipales y la introduce en la BBDD
-    public static void votos_municipales(int any, int mes, String ine, String codi_cand, int vots, Connection con) {
+    public static void votos_municipales(int any, int mes,String codi_prov, String ine,String codi_dis, String codi_cand, int vots, Connection con) {
 
         try {
 
@@ -227,7 +226,7 @@ public class Insert {
             // create the mysql insert preparedstatement
             PreparedStatement preparedStmt = con.prepareStatement(query);
             preparedStmt.setInt(1, Select.elecciones(any, mes, con));
-            preparedStmt.setInt(2, Select.municipis(ine, con));
+            preparedStmt.setInt(2, Select.municipis(codi_prov + ine + codi_dis, con));
             preparedStmt.setInt(3, Select.candidatura(codi_cand, con));
             preparedStmt.setInt(4, vots);
 
@@ -241,7 +240,6 @@ public class Insert {
         }
 
     }
-
     // Función que coge la info de los votos de las comunidades autonomas y la introduce en la BBDD
     public static void votos_ca(String ine, String codi_cand, int vots, Connection con) {
 
