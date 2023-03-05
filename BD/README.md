@@ -16,8 +16,12 @@ __Alterem la taula de provincies__
   
 __Alterem la taula de municipis__ 
 1. codi_ine traiem NOT NULL
-2. Crear noves restriccións UNIQUE
+2. codi_ine	el canviem el màxim de caracters a 7 
+3. Crear noves restriccións UNIQUE
 
 
 __Alterem la taula d'eleccions municipis__
 1. Modifiquem la PRIMARY KEY perquè inclogui eleccio_id, municipi_id, num_meses i cens
+
+__Alterem la taula de persones__ 
+1. dni traiem NOT NULL
