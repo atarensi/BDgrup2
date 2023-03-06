@@ -25,12 +25,11 @@ SELECT COUNT(eleccio_id) as Numero_de_eleccions <br>
 FROM eleccions <br>
 WHERE MONTH(data) = 11; 
 
-``5- Mostra la quantitat de candidats per cada provincia``
+`` 5- Mostra la quantitat de candidats per cada provincia ordenat per el numero de candidats``
 
-SELECT provincia_id AS Id_provincia, COUNT(*) AS Num_candidats <br>
-FROM candidats <br>
-GROUP BY candidat_id <br>
-HAVING candidat_id IS NOT NULL <br>
+SELECT provincia_id AS Id_provincia, COUNT(*) AS Num_candidats
+FROM candidats
+GROUP BY provincia_id
 ORDER BY Num_candidats;
 
 
