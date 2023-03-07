@@ -367,6 +367,7 @@ public class Leer {
     // Función para leer el archivo 08 y buscar las personas
     public static void votos_ca (Connection con) {
         String ine;
+        String inep;
         String codi_cand;
         int vots;
         BufferedReader bfLector = null;
@@ -383,9 +384,10 @@ public class Leer {
             String strLinia;
             while ((strLinia = bfLector.readLine()) != null) {
                 ine = strLinia.substring(9,11);
+                inep = strLinia.substring(11,13);
                 codi_cand = strLinia.substring(14,20);
                 vots = Integer.parseInt(strLinia.substring(20,28));
-                if (!(ine.equals("99")))Insert.votos_ca(ine, codi_cand, vots, con);
+                if (!(ine.equals("99"))&& inep.equals("99"))Insert.votos_ca(ine, codi_cand, vots, con);
             }
 
 
